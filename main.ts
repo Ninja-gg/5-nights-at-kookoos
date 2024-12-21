@@ -538,7 +538,7 @@ function Animatronics_create () {
     white_Foxtail.setPosition(-975, 475)
 }
 function Dr_Tangles_direction_setting () {
-    Dr_Tangles_Direction = get_vent_direction(Dr_Tangle)
+    let Dr_Tangles_Direction = 0
     if (Dr_Tangles_Direction == 0) {
         return
     } else if (Dr_Tangles_Direction == 1) {
@@ -972,7 +972,11 @@ function Koko_backwards () {
         `)
 }
 function Update_animatronic (guy: Sprite, path: Sprite[]) {
+    Target_waypoint_type = sprites.readDataNumber(path[sprites.readDataNumber(guy, "Target")], "Type")
     if (!(guy.overlapsWith(path[sprites.readDataNumber(guy, "Target")]))) {
+        if (Target_waypoint_type == 3) {
+            sprites.setDataNumber(guy, "Direction", get_vent_direction(guy))
+        }
         guy.follow(path[sprites.readDataNumber(guy, "Target")])
         return
     }
@@ -982,7 +986,6 @@ function Update_animatronic (guy: Sprite, path: Sprite[]) {
         return
     }
     waitTime = game.runtime() - wpat
-    Target_waypoint_type = sprites.readDataNumber(path[sprites.readDataNumber(guy, "Target")], "Type")
     if (Target_waypoint_type == 0) {
         if (waitTime < WP_0_minimum_wait_time) {
             return
@@ -1132,14 +1135,13 @@ let vx = 0
 let target_index = 0
 let new_waypoint: Sprite = null
 let index = 0
-let Target_waypoint_type = 0
 let waitTime = 0
 let wpat = 0
+let Target_waypoint_type = 0
 let WP_3_minimum_wait_time = 0
 let WP_2_minimum_wait_time = 0
 let WP_1_minimum_wait_time = 0
 let WP_0_minimum_wait_time = 0
-let Dr_Tangles_Direction = 0
 let white_Foxtail: Sprite = null
 let cleaning_tools: Sprite = null
 let Tangels_Lab: Sprite = null
