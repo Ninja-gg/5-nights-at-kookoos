@@ -2,12 +2,13 @@ namespace SpriteKind {
     export const securitygaurd = SpriteKind.create()
     export const Waypoint = SpriteKind.create()
 }
-function Animatronic_initialise (guy: Sprite) {
-    sprites.setDataNumber(guy, "Index", 0)
-    sprites.setDataNumber(guy, "AI", 0)
-    sprites.setDataNumber(guy, "Speed", 100)
+function Animatronic_initialise (guy: Sprite, index: number, AI: number, speed: number) {
+    sprites.setDataNumber(guy, "Index", index)
+    sprites.setDataNumber(guy, "AI", AI)
+    sprites.setDataNumber(guy, "Speed", speed)
     sprites.setDataNumber(guy, "WPAT", 0)
     sprites.setDataNumber(guy, "Target", 2)
+    sprites.setDataNumber(guy, "Direction", 0)
 }
 function Animatronics_path_create () {
     Maquads_path = [dummy_waypoint]
@@ -366,6 +367,7 @@ function Animatronics_create () {
         .f7777f............f7777f.
         .ffffff............ffffff.
         `, SpriteKind.Player)
+    Animatronic_initialise(Maquad, 0, 20, 100)
     Maquad.setPosition(-400, 450)
     Withered_Bongong = sprites.create(img`
         ...........fffffffffffffff.........
@@ -409,6 +411,7 @@ function Animatronics_create () {
         ......feeeeeef......feeeeeef.......
         ......ffffffff......ffffffff.......
         `, SpriteKind.Player)
+    Animatronic_initialise(Withered_Bongong, 1, 20, 100)
     Withered_Bongong.setPosition(-1000, 550)
     Dr_Tangle = sprites.create(img`
         ........ffffffffffffff.....
@@ -438,6 +441,7 @@ function Animatronics_create () {
         fffff..f5555f....ffffffffff
         .......fffff...............
         `, SpriteKind.Player)
+    Animatronic_initialise(Dr_Tangle, 2, 20, 100)
     Dr_Tangle.setPosition(-450, 430)
     Klevin = sprites.create(img`
         . . . f 1 . f 1 . . . . . . . 
@@ -461,6 +465,7 @@ function Animatronics_create () {
         . . . . f 5 f 5 5 f . . . . . 
         . . . . f f f f f f . . . . . 
         `, SpriteKind.Player)
+    Animatronic_initialise(Klevin, 3, 20, 100)
     Klevin.setPosition(-650, -119)
     Koko = sprites.create(img`
         . f 1 . f 1 . . . . 
@@ -492,6 +497,7 @@ function Animatronics_create () {
         . . f 5 f 5 5 5 f . 
         . . f f f f f f f . 
         `, SpriteKind.Player)
+    Animatronic_initialise(Koko, 4, 20, 100)
     Koko.setPosition(-625, 114)
     white_Foxtail = sprites.create(img`
         .....ff.f...f.ff.....
@@ -528,6 +534,7 @@ function Animatronics_create () {
         ....f1111f.f1111f....
         ....ffffff.ffffff....
         `, SpriteKind.Player)
+    Animatronic_initialise(white_Foxtail, 5, 20, 100)
     white_Foxtail.setPosition(-975, 475)
 }
 function Dr_Tangles_direction_setting () {
@@ -811,13 +818,17 @@ function Dr_Tangle_backwards () {
         .......fffff...............
         `)
 }
+// ORPHAN
 function Teleport_back_to_start (guy: Sprite, path: Sprite[]) {
     guy.setPosition(path[1].x, path[1].y)
     sprites.setDataNumber(guy, "Target", 2)
     sprites.setDataNumber(guy, "WPAT", 0)
 }
 function Settings () {
-    Minimum_waypoint_wait_time = 500
+    WP_0_minimum_wait_time = 500
+    WP_1_minimum_wait_time = 500
+    WP_2_minimum_wait_time = 500
+    WP_3_minimum_wait_time = 500
 }
 function Koko_forwards () {
     Koko.setImage(img`
@@ -915,7 +926,7 @@ function Make_withered_Bongongs_path () {
     Path_adder(Withered_Bongongs_path, 24, 57, "grey", 0)
 }
 function Make_DrTangles_Path () {
-	
+    Path_adder(Dr_Tangles_path, 62, 34, "brown", 1)
 }
 function make_Maquads_path () {
     Path_adder(Maquads_path, 24, 27, "yellow", 1)
@@ -971,19 +982,43 @@ function Update_animatronic (guy: Sprite, path: Sprite[]) {
         return
     }
     waitTime = game.runtime() - wpat
-    if (waitTime < Minimum_waypoint_wait_time) {
-        return
-    }
     Target_waypoint_type = sprites.readDataNumber(path[sprites.readDataNumber(guy, "Target")], "Type")
-    if (sprites.readDataNumber(new_waypoint, "Type") >= 3) {
+    if (Target_waypoint_type == 0) {
+        if (waitTime < WP_0_minimum_wait_time) {
+            return
+        }
+    } else if (Target_waypoint_type == 1) {
+        if (waitTime < WP_1_minimum_wait_time) {
+            return
+        }
+        if (!(WP_1_Go_or_NoGo_TRUE_is_move_on)) {
+            return
+        }
+    } else if (Target_waypoint_type == 2) {
+        if (sprites.readDataNumber(guy, "Direction") == 0) {
+            sprites.setDataNumber(guy, "Direction", 3)
+            index = sprites.readDataNumber(guy, "Index")
+            if (index == 0) {
+            	
+            }
+        }
+        if (waitTime < WP_2_minimum_wait_time) {
+            return
+        }
+    } else if (Target_waypoint_type == 3) {
+        if (waitTime < WP_3_minimum_wait_time) {
+            return
+        }
+    } else {
+        console.logValue("TargetWaypointType", Target_waypoint_type)
+    }
+    if (sprites.readDataNumber(new_waypoint, "Type") >= 2) {
         return
     }
-    if (!(This_is_where_greenred_choices_get_made)) {
-        return
-    }
+    // MOVE ON TO THE NEXT WAYPOINT
     target_index = sprites.readDataNumber(guy, "Target") + 1
     if (target_index >= path.length) {
-        Teleport_back_to_start(guy, path)
+        Teleport_to_waypoint(guy, path, 1)
         return
     }
     sprites.setDataNumber(guy, "WPAT", 0)
@@ -1086,14 +1121,24 @@ function start_night () {
     tiles.setCurrentTilemap(tilemap`level5`)
     initialize_sprite_positions_for_night()
 }
+function Teleport_to_waypoint (guy: Sprite, path: Sprite[], toIndex: number) {
+    guy.setPosition(path[toIndex].x, path[toIndex].y)
+    sprites.setDataNumber(guy, "Target", toIndex + 1)
+    sprites.setDataNumber(guy, "WPAT", 0)
+}
+let temp = 0
 let vy = 0
 let vx = 0
 let target_index = 0
 let new_waypoint: Sprite = null
+let index = 0
 let Target_waypoint_type = 0
 let waitTime = 0
 let wpat = 0
-let Minimum_waypoint_wait_time = 0
+let WP_3_minimum_wait_time = 0
+let WP_2_minimum_wait_time = 0
+let WP_1_minimum_wait_time = 0
+let WP_0_minimum_wait_time = 0
 let Dr_Tangles_Direction = 0
 let white_Foxtail: Sprite = null
 let cleaning_tools: Sprite = null
@@ -1106,7 +1151,7 @@ let Klevins_path: Sprite[] = []
 let Dr_Tangles_path: Sprite[] = []
 let Withered_Bongongs_path: Sprite[] = []
 let Maquads_path: Sprite[] = []
-let This_is_where_greenred_choices_get_made = false
+let WP_1_Go_or_NoGo_TRUE_is_move_on = false
 let Koko: Sprite = null
 let Klevin: Sprite = null
 let Dr_Tangle: Sprite = null
@@ -1361,13 +1406,10 @@ Dr_Tangle,
 Klevin,
 Koko
 ]
-for (let value of Animatronics) {
-    Animatronic_initialise(value)
-}
 Initialize_sprites()
 Settings()
 let Game_On_pizza_boy = 0
-This_is_where_greenred_choices_get_made = true
+WP_1_Go_or_NoGo_TRUE_is_move_on = true
 game.onUpdate(function () {
     if (seletor.overlapsWith(night_1)) {
         night = 1
@@ -1392,13 +1434,10 @@ game.onUpdate(function () {
                 Night_started_okay = 1
                 Game_On_pizza_boy = 1
                 if (night == 1) {
-                    scene.cameraFollowSprite(Maquad)
+                    scene.centerCameraAt(tilemap_to_pixels(88), tilemap_to_pixels(30))
                 }
                 if (night == 2) {
                     scene.cameraFollowSprite(Withered_Bongong)
-                }
-                if (night == 2) {
-                	
                 }
                 if (night == 3) {
                 	
@@ -1414,14 +1453,14 @@ game.onUpdate(function () {
     }
 })
 game.onUpdate(function () {
-    if (Maquad.overlapsWith(dummy_waypoint)) {
-        Maquad.sayText("yay i made it")
-    }
-})
-game.onUpdate(function () {
     if (Game_On_pizza_boy == 1) {
         Update_animatronic(Maquad, Maquads_path)
         Update_animatronic(Withered_Bongong, Withered_Bongongs_path)
+        temp = sprites.readDataNumber(Dr_Tangle, "Direction")
+        Update_animatronic(Dr_Tangle, Dr_Tangles_path)
+        if (sprites.readDataNumber(Dr_Tangle, "Direction") != temp) {
+            Dr_Tangles_direction_setting()
+        }
     }
 })
 game.onUpdateInterval(5000, function () {
