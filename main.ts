@@ -538,9 +538,36 @@ function Animatronics_create () {
     white_Foxtail.setPosition(-975, 475)
 }
 function Dr_Tangles_direction_setting () {
-    let Dr_Tangles_Direction = 0
+    Dr_Tangles_Direction = sprites.readDataNumber(Dr_Tangle, "Direction")
     if (Dr_Tangles_Direction == 0) {
-        return
+        Dr_Tangle.setImage(img`
+            ........ffffffffffffff.....
+            .......f55555555555555f....
+            .......f55555555555555ff...
+            ......f55555555555555555f..
+            ......f555fffffffffff555f..
+            ......f55f11fffff1111f55f..
+            ......f55f11fffff1111f55f..
+            ......f55f11fffff1111f55f..
+            ......f77f11fffff1111f77f..
+            ......f77f11fffff1111f77f..
+            ......f777fffffffffff777f..
+            ......f77777777777777777f..
+            .....ff77777777777777777f..
+            ....f7777777777777777777f..
+            ....f7777777777777777777f..
+            ....f7777777777777777777f..
+            ...ff7777777777777777777f..
+            ..f7777ff777777777f77777f..
+            ..f7777ff7777fff777f7777f..
+            .ff7777ff777f...f77fff77f..
+            f5577ff.f777f...f7775f777ff
+            f5577f..f777f...f7775f7775f
+            f5555f.f5777f...f7775f7775f
+            f5555f.f5777f...f5555f5555f
+            fffff..f5555f....ffffffffff
+            .......fffff...............
+            `)
     } else if (Dr_Tangles_Direction == 1) {
         Dr_Tangle.setImage(img`
             ....................fffff.
@@ -571,7 +598,6 @@ function Dr_Tangles_direction_setting () {
             ...................f5555f.
             ....................fffff.
             `)
-        return
     } else if (Dr_Tangles_Direction == 2) {
         Dr_Tangle.setImage(img`
             .fffff....................
@@ -818,12 +844,6 @@ function Dr_Tangle_backwards () {
         .......fffff...............
         `)
 }
-// ORPHAN
-function Teleport_back_to_start (guy: Sprite, path: Sprite[]) {
-    guy.setPosition(path[1].x, path[1].y)
-    sprites.setDataNumber(guy, "Target", 2)
-    sprites.setDataNumber(guy, "WPAT", 0)
-}
 function Settings () {
     WP_0_minimum_wait_time = 500
     WP_1_minimum_wait_time = 500
@@ -974,10 +994,10 @@ function Koko_backwards () {
 function Update_animatronic (guy: Sprite, path: Sprite[]) {
     Target_waypoint_type = sprites.readDataNumber(path[sprites.readDataNumber(guy, "Target")], "Type")
     if (!(guy.overlapsWith(path[sprites.readDataNumber(guy, "Target")]))) {
-        if (Target_waypoint_type == 3) {
+        guy.follow(path[sprites.readDataNumber(guy, "Target")])
+        if (sprites.readDataNumber(guy, "Direction") != 0) {
             sprites.setDataNumber(guy, "Direction", get_vent_direction(guy))
         }
-        guy.follow(path[sprites.readDataNumber(guy, "Target")])
         return
     }
     wpat = sprites.readDataNumber(guy, "WPAT")
@@ -1000,23 +1020,22 @@ function Update_animatronic (guy: Sprite, path: Sprite[]) {
     } else if (Target_waypoint_type == 2) {
         if (sprites.readDataNumber(guy, "Direction") == 0) {
             sprites.setDataNumber(guy, "Direction", 3)
-            index = sprites.readDataNumber(guy, "Index")
-            if (index == 0) {
-            	
-            }
+            return
         }
         if (waitTime < WP_2_minimum_wait_time) {
             return
         }
+        Teleport_to_waypoint(guy, path, sprites.readDataNumber(guy, "Target") + 1)
+        return
     } else if (Target_waypoint_type == 3) {
         if (waitTime < WP_3_minimum_wait_time) {
             return
         }
+        sprites.setDataNumber(guy, "Direction", 0)
+        Teleport_to_waypoint(guy, path, sprites.readDataNumber(guy, "Target") + 1)
+        return
     } else {
         console.logValue("TargetWaypointType", Target_waypoint_type)
-    }
-    if (sprites.readDataNumber(new_waypoint, "Type") >= 2) {
-        return
     }
     // MOVE ON TO THE NEXT WAYPOINT
     target_index = sprites.readDataNumber(guy, "Target") + 1
@@ -1130,11 +1149,10 @@ function Teleport_to_waypoint (guy: Sprite, path: Sprite[], toIndex: number) {
     sprites.setDataNumber(guy, "WPAT", 0)
 }
 let temp = 0
+let new_waypoint: Sprite = null
 let vy = 0
 let vx = 0
 let target_index = 0
-let new_waypoint: Sprite = null
-let index = 0
 let waitTime = 0
 let wpat = 0
 let Target_waypoint_type = 0
@@ -1142,6 +1160,7 @@ let WP_3_minimum_wait_time = 0
 let WP_2_minimum_wait_time = 0
 let WP_1_minimum_wait_time = 0
 let WP_0_minimum_wait_time = 0
+let Dr_Tangles_Direction = 0
 let white_Foxtail: Sprite = null
 let cleaning_tools: Sprite = null
 let Tangels_Lab: Sprite = null
