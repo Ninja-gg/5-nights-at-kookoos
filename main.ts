@@ -946,7 +946,19 @@ function Make_withered_Bongongs_path () {
     Path_adder(Withered_Bongongs_path, 24, 57, "grey", 0)
 }
 function Make_DrTangles_Path () {
-    Path_adder(Dr_Tangles_path, 62, 34, "brown", 1)
+    Path_adder(Dr_Tangles_path, 28, 26, "blue", 1)
+    Path_adder(Dr_Tangles_path, 21, 28, "grey", 2)
+    Path_adder(Dr_Tangles_path, 97, 30, "dark grey", 0)
+    Path_adder(Dr_Tangles_path, 86, 30, "dark grey", 1)
+    Path_adder(Dr_Tangles_path, 81, 30, "dark grey", 0)
+    Path_adder(Dr_Tangles_path, 81, 39, "dark grey", 1)
+    Path_adder(Dr_Tangles_path, 81, 43, "dark grey", 0)
+    Path_adder(Dr_Tangles_path, 87, 43, "dark grey", 3)
+    Path_adder(Dr_Tangles_path, 12, 41, "grey", 0)
+    Path_adder(Dr_Tangles_path, 13, 43, "dark grey", 1)
+    Path_adder(Dr_Tangles_path, 13, 47, "grey", 0)
+    Path_adder(Dr_Tangles_path, 22, 47, "grey", 1)
+    Path_adder(Dr_Tangles_path, 22, 57, "grey", 0)
 }
 function make_Maquads_path () {
     Path_adder(Maquads_path, 24, 27, "yellow", 1)
@@ -954,8 +966,8 @@ function make_Maquads_path () {
     Path_adder(Maquads_path, 33, 40, "red", 1)
     Path_adder(Maquads_path, 33, 48, "red", 0)
     Path_adder(Maquads_path, 48, 48, "red", 1)
-    Path_adder(Maquads_path, 39, 48, "red", 0)
-    Path_adder(Maquads_path, 39, 67, "grey", 1)
+    Path_adder(Maquads_path, 44, 48, "red", 0)
+    Path_adder(Maquads_path, 44, 67, "grey", 1)
     Path_adder(Maquads_path, 33, 67, "grey", 0)
 }
 function Koko_backwards () {
@@ -1093,6 +1105,10 @@ function Path_adder (path: Sprite[], x: number, y: number, colour: string, _type
     } else if (colour == "brown") {
         new_waypoint.setImage(img`
             e 
+            `)
+    } else if (colour == "blue") {
+        new_waypoint.setImage(img`
+            8 
             `)
     } else {
         new_waypoint.setImage(img`
