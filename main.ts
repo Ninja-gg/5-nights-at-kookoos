@@ -777,6 +777,184 @@ function White_Foxtail_backwards () {
         ..................................................
         `)
 }
+function Kokos_direction_setting () {
+    Kokos_Direction = sprites.readDataNumber(Koko, "Direction")
+    if (Kokos_Direction == 0) {
+        Koko.setImage(img`
+            . f 1 . f 1 . . . . 
+            . f f f f f f f f . 
+            f 5 5 5 5 5 5 4 f . 
+            . f f f f 5 4 4 f . 
+            f 5 5 5 5 5 4 4 f . 
+            f f f f f f f f . . 
+            . . . . . f 3 3 f . 
+            . . . . f 3 f f f f 
+            . . . f 3 f 3 3 3 f 
+            . . . f 3 f f f f f 
+            . . . f f 3 3 3 3 f 
+            . . . f 3 f 3 3 3 f 
+            . . . f f 3 3 3 3 f 
+            . . . f 3 f f f f f 
+            . . . . f 3 3 3 f . 
+            . . . . f f f f f . 
+            . . . . f 4 f 4 f . 
+            . . . . f 4 f 4 f . 
+            . . . . f 4 f 4 f . 
+            . . . . f 4 f 4 f . 
+            . . . . f 4 f 4 f . 
+            . . . . f 4 f 4 f . 
+            . . . . f 4 f 4 f . 
+            . . . . f 4 f 4 f . 
+            . . . . f f f f f . 
+            . . . f 5 f 5 5 f . 
+            . . f 5 f 5 5 5 f . 
+            . . f f f f f f f . 
+            `)
+    } else if (Kokos_Direction == 1) {
+        Koko.setImage(img`
+            .ffffff......................
+            ff33333f.....................
+            f3333333f....................
+            .f3333333ffff................
+            f33f33333f44f................
+            .ff.fffff.f4f..............ff
+            ..ffff..fffffff...........f5f
+            .ff54f.f3333333fffffffffff55f
+            .f544ff333333333f44444444ffff
+            .f544ff333333333ffffffffff...
+            .f544ff333333333f44444444ffff
+            .ff54f.f3333333fffffffffff55f
+            ..ffff..fffffff...........f5f
+            .ff.fffff.f4f..............ff
+            f33f33333f44f................
+            .f3333333ffff................
+            f3333333f....................
+            ff33333f.....................
+            .ffffff......................
+            `)
+    } else if (Kokos_Direction == 2) {
+        Koko.setImage(img`
+            ......................ffffff.
+            .....................f33333ff
+            ....................f3333333f
+            ................ffff3333333f.
+            ................f44f33333f33f
+            ff..............f4f.fffff.ff.
+            f5f...........fffffff..ffff..
+            f55fffffffffff3333333f.f45ff.
+            ffff44444444f333333333ff445f.
+            ...ffffffffff333333333ff445f.
+            ffff44444444f333333333ff445f.
+            f55fffffffffff3333333f.f45ff.
+            f5f...........fffffff..ffff..
+            ff..............f4f.fffff.ff.
+            ................f44f33333f33f
+            ................ffff3333333f.
+            ....................f3333333f
+            .....................f33333ff
+            ......................ffffff.
+            `)
+    } else if (Kokos_Direction == 3) {
+        Koko.setImage(img`
+            .ff.f.........f.ff.
+            ff3f3f.fffff.f3f3ff
+            f3333fff555fff3333f
+            f333f.f54445f.f333f
+            f3333ff44444ff3333f
+            f3333fffffffff3333f
+            f3333f..fff..f3333f
+            .f333f.f333f.f333f.
+            ..f33ff33333ff33f..
+            ...ff.f33333f.ff...
+            ...f4ff33333ff4f...
+            ...f44f33333f44f...
+            ...ffff33333ffff...
+            ......f33333f......
+            ......f33333f......
+            .......f333f.......
+            .......fffff.......
+            .......f4f4f.......
+            .......f4f4f.......
+            .......f4f4f.......
+            .......f4f4f.......
+            .......f4f4f.......
+            .......f4f4f.......
+            .......f4f4f.......
+            .......f4f4f.......
+            .......fffff.......
+            ......f5f.f5f......
+            .....f55f.f55f.....
+            .....ffff.ffff.....
+            `)
+    } else if (Kokos_Direction == 4) {
+        Koko.setImage(img`
+            .....ffff.ffff.....
+            .....f55f.f55f.....
+            ......f5f.f5f......
+            .......fffff.......
+            .......f4f4f.......
+            .......f4f4f.......
+            .......f4f4f.......
+            .......f4f4f.......
+            .......f4f4f.......
+            .......f4f4f.......
+            .......f4f4f.......
+            .......f4f4f.......
+            .......fffff.......
+            .......f333f.......
+            ......f33333f......
+            ......f33333f......
+            ...ffff33333ffff...
+            ...f44f33333f44f...
+            ...f4ff33333ff4f...
+            ...ff.f33333f.ff...
+            ..f33ff33333ff33f..
+            .f333f.f333f.f333f.
+            f3333f..fff..f3333f
+            f3333fffffffff3333f
+            f3333ff44444ff3333f
+            f333f.f54445f.f333f
+            f3333fff555fff3333f
+            ff3f3f.fffff.f3f3ff
+            .ff.f.........f.ff.
+            `)
+    } else {
+        Koko.setImage(img`
+            ...........22222222222..........
+            .........222222222222222........
+            .......2222...........2222......
+            ......2.2...............2.2.....
+            .....2.2.................222....
+            ....2.2.................222.2...
+            ....22.................222.22...
+            ...22.................222...22..
+            ...22................222....22..
+            ..22................222......22.
+            ..22...............222.......22.
+            ..22..............222........22.
+            ..22.............222.........22.
+            ..22............222..........22.
+            ..22...........222...........22.
+            ..22..........222............22.
+            ..22.........222.............22.
+            ..22........222..............22.
+            ..22.......222...............22.
+            ..22......222................22.
+            ...22....222................22..
+            ...22...222.................22..
+            ....22.222.................22...
+            ....2.222.................2.2...
+            .....222.................2.2....
+            ......2.2...............2.2.....
+            .......2222...........2222......
+            .........222222222222222........
+            ...........22222222222..........
+            ................................
+            ................................
+            ................................
+            `)
+    }
+}
 function White_Foxtail_forwards () {
     white_Foxtail.setImage(img`
         .....ff.f...f.ff.....
@@ -845,10 +1023,10 @@ function Dr_Tangle_backwards () {
         `)
 }
 function Settings () {
-    WP_0_minimum_wait_time = 500
-    WP_1_minimum_wait_time = 500
-    WP_2_minimum_wait_time = 500
-    WP_3_minimum_wait_time = 500
+    WP_0_minimum_wait_time = 200
+    WP_1_minimum_wait_time = 1500
+    WP_2_minimum_wait_time = 1500
+    WP_3_minimum_wait_time = 1500
 }
 function Koko_forwards () {
     Koko.setImage(img`
@@ -1059,6 +1237,23 @@ function Update_animatronic (guy: Sprite, path: Sprite[]) {
     sprites.setDataNumber(guy, "Target", target_index)
     guy.follow(path[target_index])
 }
+function Make_kokos_path () {
+    Path_adder(Kokos_path, 39, 7, "white", 1)
+    Path_adder(Kokos_path, 39, 20, "dark grey", 1)
+    Path_adder(Kokos_path, 39, 39, "red", 0)
+    Path_adder(Kokos_path, 47, 39, "red", 0)
+    Path_adder(Kokos_path, 47, 46, "red", 0)
+    Path_adder(Kokos_path, 56, 46, "grey", 1)
+    Path_adder(Kokos_path, 64, 46, "grey", 2)
+    Path_adder(Kokos_path, 93, 54, "dark grey", 0)
+    Path_adder(Kokos_path, 97, 54, "dark grey", 0)
+    Path_adder(Kokos_path, 97, 65, "dark grey", 1)
+    Path_adder(Kokos_path, 97, 72, "dark grey", 0)
+    Path_adder(Kokos_path, 89, 72, "dark grey", 1)
+    Path_adder(Kokos_path, 66, 72, "dark grey", 3)
+    Path_adder(Kokos_path, 45, 67, "grey", 0)
+    Path_adder(Kokos_path, 32, 67, "grey", 0)
+}
 function tilemap_to_pixels (tileI: number) {
     return tileI * 16 + 8
 }
@@ -1109,6 +1304,10 @@ function Path_adder (path: Sprite[], x: number, y: number, colour: string, _type
     } else if (colour == "blue") {
         new_waypoint.setImage(img`
             8 
+            `)
+    } else if (colour == "white") {
+        new_waypoint.setImage(img`
+            1 
             `)
     } else {
         new_waypoint.setImage(img`
@@ -1176,6 +1375,7 @@ let WP_3_minimum_wait_time = 0
 let WP_2_minimum_wait_time = 0
 let WP_1_minimum_wait_time = 0
 let WP_0_minimum_wait_time = 0
+let Kokos_Direction = 0
 let Dr_Tangles_Direction = 0
 let white_Foxtail: Sprite = null
 let cleaning_tools: Sprite = null
@@ -1435,6 +1635,8 @@ sprites.setDataNumber(dummy_waypoint, "Y", -10)
 Animatronics_path_create()
 make_Maquads_path()
 Make_withered_Bongongs_path()
+Make_DrTangles_Path()
+Make_kokos_path()
 Animatronics_create()
 let Animatronics = [
 Maquad,
@@ -1477,10 +1679,10 @@ game.onUpdate(function () {
                     scene.cameraFollowSprite(Withered_Bongong)
                 }
                 if (night == 3) {
-                	
+                    scene.cameraFollowSprite(Dr_Tangle)
                 }
                 if (night == 4) {
-                	
+                    scene.cameraFollowSprite(Koko)
                 }
                 if (night == 5) {
                 	
@@ -1497,6 +1699,11 @@ game.onUpdate(function () {
         Update_animatronic(Dr_Tangle, Dr_Tangles_path)
         if (sprites.readDataNumber(Dr_Tangle, "Direction") != temp) {
             Dr_Tangles_direction_setting()
+        }
+        temp = sprites.readDataNumber(Koko, "Direction")
+        Update_animatronic(Koko, Kokos_path)
+        if (sprites.readDataNumber(Koko, "Direction") != temp) {
+            Kokos_direction_setting()
         }
     }
 })
