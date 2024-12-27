@@ -9,6 +9,7 @@ function Animatronic_initialise (guy: Sprite, index: number, AI: number, speed: 
     sprites.setDataNumber(guy, "WPAT", 0)
     sprites.setDataNumber(guy, "Target", 2)
     sprites.setDataNumber(guy, "Direction", 0)
+    sprites.setDataBoolean(guy, "In Vent", false)
 }
 function Animatronics_path_create () {
     Maquads_path = [dummy_waypoint]
@@ -1315,7 +1316,6 @@ function Make_withered_Bongongs_path () {
     Path_adder(Withered_Bongongs_path, 51, 28, "brown", 1)
     Path_adder(Withered_Bongongs_path, 51, 47, "red", 0)
     Path_adder(Withered_Bongongs_path, 46, 47, "red", 1)
-    Path_adder(Withered_Bongongs_path, 46, 47, "red", 1)
     Path_adder(Withered_Bongongs_path, 14, 47, "grey", 1)
     Path_adder(Withered_Bongongs_path, 14, 54, "grey", 1)
     Path_adder(Withered_Bongongs_path, 14, 57, "grey", 0)
@@ -1382,7 +1382,7 @@ function Update_animatronic (guy: Sprite, path: Sprite[]) {
     Target_waypoint_type = sprites.readDataNumber(path[sprites.readDataNumber(guy, "Target")], "Type")
     if (!(guy.overlapsWith(path[sprites.readDataNumber(guy, "Target")]))) {
         guy.follow(path[sprites.readDataNumber(guy, "Target")])
-        if (sprites.readDataNumber(guy, "Direction") != 0) {
+        if (sprites.readDataBoolean(guy, "In Vent")) {
             sprites.setDataNumber(guy, "Direction", get_vent_direction(guy))
         }
         return
@@ -1412,12 +1412,14 @@ function Update_animatronic (guy: Sprite, path: Sprite[]) {
         if (waitTime < WP_2_minimum_wait_time) {
             return
         }
+        sprites.setDataBoolean(guy, "In Vent", true)
         Teleport_to_waypoint(guy, path, sprites.readDataNumber(guy, "Target") + 1)
         return
     } else if (Target_waypoint_type == 3) {
         if (waitTime < WP_3_minimum_wait_time) {
             return
         }
+        sprites.setDataBoolean(guy, "In Vent", false)
         sprites.setDataNumber(guy, "Direction", 0)
         Teleport_to_waypoint(guy, path, sprites.readDataNumber(guy, "Target") + 1)
         return
@@ -1441,14 +1443,14 @@ function Make_kokos_path () {
     Path_adder(Kokos_path, 53, 46, "red", 0)
     Path_adder(Kokos_path, 56, 46, "grey", 1)
     Path_adder(Kokos_path, 68, 46, "grey", 2)
-    Path_adder(Kokos_path, 93, 54, "dark grey", 0)
-    Path_adder(Kokos_path, 97, 54, "dark grey", 0)
-    Path_adder(Kokos_path, 97, 65, "dark grey", 1)
-    Path_adder(Kokos_path, 97, 72, "dark grey", 0)
-    Path_adder(Kokos_path, 89, 72, "dark grey", 1)
-    Path_adder(Kokos_path, 66, 72, "dark grey", 3)
-    Path_adder(Kokos_path, 45, 67, "grey", 0)
-    Path_adder(Kokos_path, 32, 67, "grey", 0)
+    Path_adder(Kokos_path, 89, 2, "dark grey", 0)
+    Path_adder(Kokos_path, 94, 2, "dark grey", 0)
+    Path_adder(Kokos_path, 94, 13, "dark grey", 1)
+    Path_adder(Kokos_path, 94, 21, "dark grey", 0)
+    Path_adder(Kokos_path, 85, 21, "dark grey", 1)
+    Path_adder(Kokos_path, 62, 21, "dark grey", 3)
+    Path_adder(Kokos_path, 49, 72, "grey", 0)
+    Path_adder(Kokos_path, 32, 72, "grey", 0)
 }
 function tilemap_to_pixels (tileI: number) {
     return tileI * 16 + 8
