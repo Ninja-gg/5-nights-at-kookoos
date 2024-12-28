@@ -11,6 +11,17 @@ function Animatronic_initialise (guy: Sprite, index: number, AI: number, speed: 
     sprites.setDataNumber(guy, "Direction", 0)
     sprites.setDataBoolean(guy, "In Vent", false)
 }
+function Move_on_to_next_waypoint (guy: Sprite, path: any[], target_index: number) {
+    // MOVE ON TO THE NEXT WAYPOINT
+    target_index = sprites.readDataNumber(guy, "Target") + 1
+    if (target_index >= path.length) {
+        Teleport_to_waypoint(guy, path, 1)
+        return
+    }
+    sprites.setDataNumber(guy, "WPAT", 0)
+    sprites.setDataNumber(guy, "Target", target_index)
+    guy.follow(path[target_index])
+}
 function Animatronics_path_create () {
     Maquads_path = [dummy_waypoint]
     Withered_Bongongs_path = [dummy_waypoint]
@@ -18,6 +29,9 @@ function Animatronics_path_create () {
     Klevins_path = [dummy_waypoint]
     Kokos_path = [dummy_waypoint]
     White_Foxtails_Path = [dummy_waypoint]
+}
+function Activate_cameras () {
+    controller.moveSprite(Security_Gaurd, 0, 0)
 }
 function Initialize_sprites () {
     treestructure = sprites.create(img`
@@ -1303,7 +1317,7 @@ function initialize_sprite_positions_for_night () {
     Dr_Tangle.setPosition(450, 430)
     Withered_Bongong.setPosition(1000, 550)
     Klevin.setPosition(650, 119)
-    Koko.setPosition(640, 114)
+    Koko.setPosition(680, 200)
     y_top.setPosition(tilemap_to_pixels(16), tilemap_to_pixels(68))
     y_bottom.setPosition(tilemap_to_pixels(16), tilemap_to_pixels(78))
     x_right.setPosition(tilemap_to_pixels(21), tilemap_to_pixels(73))
@@ -1335,6 +1349,11 @@ function Make_DrTangles_Path () {
     Path_adder(Dr_Tangles_path, 12, 47, "grey", 1)
     Path_adder(Dr_Tangles_path, 12, 57, "grey", 0)
 }
+controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (screen2 == 2) {
+    	
+    }
+})
 function make_Maquads_path () {
     Path_adder(Maquads_path, 24, 27, "yellow", 1)
     Path_adder(Maquads_path, 38, 28, "yellow", 0)
@@ -1397,6 +1416,7 @@ function Update_animatronic (guy: Sprite, path: Sprite[]) {
         if (waitTime < WP_0_minimum_wait_time) {
             return
         }
+        Move_on_to_next_waypoint(guy, path, target_index)
     } else if (Target_waypoint_type == 1) {
         if (waitTime < WP_1_minimum_wait_time) {
             return
@@ -1404,6 +1424,7 @@ function Update_animatronic (guy: Sprite, path: Sprite[]) {
         if (!(WP_1_Go_or_NoGo_TRUE_is_move_on)) {
             return
         }
+        Move_on_to_next_waypoint(guy, path, target_index)
     } else if (Target_waypoint_type == 2) {
         if (sprites.readDataNumber(guy, "Direction") == 0) {
             sprites.setDataNumber(guy, "Direction", 3)
@@ -1426,18 +1447,9 @@ function Update_animatronic (guy: Sprite, path: Sprite[]) {
     } else {
         console.logValue("TargetWaypointType", Target_waypoint_type)
     }
-    // MOVE ON TO THE NEXT WAYPOINT
-    target_index = sprites.readDataNumber(guy, "Target") + 1
-    if (target_index >= path.length) {
-        Teleport_to_waypoint(guy, path, 1)
-        return
-    }
-    sprites.setDataNumber(guy, "WPAT", 0)
-    sprites.setDataNumber(guy, "Target", target_index)
-    guy.follow(path[target_index])
 }
 function Make_kokos_path () {
-    Path_adder(Kokos_path, 39, 7, "white", 1)
+    Path_adder(Kokos_path, 42, 12, "white", 1)
     Path_adder(Kokos_path, 45, 21, "white", 1)
     Path_adder(Kokos_path, 45, 39, "red", 0)
     Path_adder(Kokos_path, 53, 46, "red", 0)
@@ -1565,7 +1577,6 @@ let temp = 0
 let new_waypoint: Sprite = null
 let vy = 0
 let vx = 0
-let target_index = 0
 let waitTime = 0
 let wpat = 0
 let Target_waypoint_type = 0
@@ -1576,17 +1587,19 @@ let WP_0_minimum_wait_time = 0
 let Kokos_Direction = 0
 let Dr_Tangles_Direction = 0
 let white_Foxtail: Sprite = null
-let Security_Gaurd: Sprite = null
 let Kokos_mountain: Sprite = null
 let cleaning_tools: Sprite = null
 let Tangels_Lab: Sprite = null
 let treestructure: Sprite = null
+let Security_Gaurd: Sprite = null
 let White_Foxtails_Path: Sprite[] = []
 let Kokos_path: Sprite[] = []
 let Klevins_path: Sprite[] = []
 let Dr_Tangles_path: Sprite[] = []
 let Withered_Bongongs_path: Sprite[] = []
 let Maquads_path: Sprite[] = []
+let target_index = 0
+let screen2 = 0
 let WP_1_Go_or_NoGo_TRUE_is_move_on = false
 let Koko: Sprite = null
 let Klevin: Sprite = null
@@ -1848,6 +1861,14 @@ Initialize_sprites()
 Settings()
 let Game_On_pizza_boy = 0
 WP_1_Go_or_NoGo_TRUE_is_move_on = true
+// 0=Level select
+// 1=Security guard
+// 2=Main cameras
+// 3=Vent cameras
+// 
+// 
+screen2 = 0
+let camera_active = 0
 game.onUpdate(function () {
     if (seletor.overlapsWith(night_1)) {
         night = 1
@@ -1863,6 +1884,10 @@ game.onUpdate(function () {
         start_night()
     } else if (seletor.overlapsWith(night_5)) {
         night = 5
+        start_night()
+        open_walls_for_night()
+    } else if (seletor.overlapsWith(Custom_night)) {
+        night = -1
         start_night()
         open_walls_for_night()
     }
@@ -1885,6 +1910,9 @@ game.onUpdate(function () {
                 }
                 if (night == 5) {
                 	
+                }
+                if (night == -1) {
+                    Activate_cameras()
                 }
             }
         }
