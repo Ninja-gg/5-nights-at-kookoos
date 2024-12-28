@@ -1202,6 +1202,15 @@ function White_Foxtail_forwards () {
         ....ffffff.ffffff....
         `)
 }
+function Create_vent_cameras () {
+    Camera_adder(Camera_vent_coords, 88, 30)
+    Camera_adder(Camera_vent_coords, 81, 37)
+    Camera_vent_number = Camera_vent_coords.length / 2
+}
+function Camera_adder (cameras: number[], x: number, y: number) {
+    cameras.push(tilemap_to_pixels(x))
+    cameras.push(tilemap_to_pixels(y))
+}
 function Dr_Tangle_backwards () {
     Dr_Tangle.setImage(img`
         ........ffffffffffffff.....
@@ -1231,6 +1240,11 @@ function Dr_Tangle_backwards () {
         fffff..f5555f....ffffffffff
         .......fffff...............
         `)
+}
+function Create_main_cameras () {
+    Camera_adder(Camera_main_coords, 26, 27)
+    Camera_adder(Camera_main_coords, 39, 47)
+    Camera_main_number = Camera_main_coords.length / 2
 }
 function Settings () {
     WP_0_minimum_wait_time = 200
@@ -1351,6 +1365,10 @@ function Make_DrTangles_Path () {
 }
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     if (screen2 == 2) {
+        if (Active_main_camera == 0) {
+        	
+        }
+    } else if (screen2 == 3) {
     	
     }
 })
@@ -1467,6 +1485,15 @@ function Make_kokos_path () {
 function tilemap_to_pixels (tileI: number) {
     return tileI * 16 + 8
 }
+function View_camera (cameras: number[], index: number) {
+    double = index * 2
+    if (double >= cameras.length || double < 0) {
+        console.logValue("Out of range, camera index", index)
+    }
+    camX = cameras[double]
+    camY = cameras[double + 1]
+    scene.centerCameraAt(camX, camY)
+}
 function get_vent_direction (guy: Sprite) {
     vx = guy.vx
     vy = guy.vy
@@ -1577,6 +1604,9 @@ let temp = 0
 let new_waypoint: Sprite = null
 let vy = 0
 let vx = 0
+let camY = 0
+let camX = 0
+let double = 0
 let waitTime = 0
 let wpat = 0
 let Target_waypoint_type = 0
@@ -1599,6 +1629,11 @@ let Dr_Tangles_path: Sprite[] = []
 let Withered_Bongongs_path: Sprite[] = []
 let Maquads_path: Sprite[] = []
 let target_index = 0
+let Camera_vent_number = 0
+let Camera_main_number = 0
+let Camera_main_coords: number[] = []
+let Camera_vent_coords: number[] = []
+let Active_main_camera = 0
 let screen2 = 0
 let WP_1_Go_or_NoGo_TRUE_is_move_on = false
 let Koko: Sprite = null
@@ -1868,7 +1903,14 @@ WP_1_Go_or_NoGo_TRUE_is_move_on = true
 // 
 // 
 screen2 = 0
-let camera_active = 0
+Active_main_camera = 0
+let Active_vent_camera = 0
+Camera_vent_coords = []
+Camera_main_coords = []
+Camera_main_number = 0
+Camera_vent_number = 0
+Create_main_cameras()
+Create_vent_cameras()
 game.onUpdate(function () {
     if (seletor.overlapsWith(night_1)) {
         night = 1
