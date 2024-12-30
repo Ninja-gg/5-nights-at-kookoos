@@ -1,6 +1,7 @@
 namespace SpriteKind {
     export const securitygaurd = SpriteKind.create()
     export const Waypoint = SpriteKind.create()
+    export const chair = SpriteKind.create()
 }
 function Animatronic_initialise (guy: Sprite, index: number, AI: number, speed: number) {
     sprites.setDataNumber(guy, "Index", index)
@@ -380,24 +381,24 @@ function Initialize_sprites () {
     Security_Gaurd.setPosition(-700, 1100)
 }
 function open_walls_for_night () {
-    tiles.setTileAt(tiles.getTileLocation(31, 71), assets.tile`myTile21`)
-    tiles.setTileAt(tiles.getTileLocation(31, 72), assets.tile`myTile21`)
-    tiles.setTileAt(tiles.getTileLocation(31, 73), assets.tile`myTile21`)
-    tiles.setWallAt(tiles.getTileLocation(31, 71), false)
-    tiles.setWallAt(tiles.getTileLocation(31, 72), false)
-    tiles.setWallAt(tiles.getTileLocation(31, 73), false)
-    tiles.setTileAt(tiles.getTileLocation(11, 58), assets.tile`myTile21`)
-    tiles.setTileAt(tiles.getTileLocation(12, 58), assets.tile`myTile21`)
-    tiles.setTileAt(tiles.getTileLocation(13, 58), assets.tile`myTile21`)
-    tiles.setTileAt(tiles.getTileLocation(14, 58), assets.tile`myTile21`)
-    tiles.setTileAt(tiles.getTileLocation(15, 58), assets.tile`myTile21`)
-    tiles.setTileAt(tiles.getTileLocation(16, 58), assets.tile`myTile21`)
-    tiles.setWallAt(tiles.getTileLocation(11, 58), false)
-    tiles.setWallAt(tiles.getTileLocation(12, 58), false)
-    tiles.setWallAt(tiles.getTileLocation(13, 58), false)
-    tiles.setWallAt(tiles.getTileLocation(14, 58), false)
-    tiles.setWallAt(tiles.getTileLocation(15, 58), false)
-    tiles.setWallAt(tiles.getTileLocation(16, 58), false)
+    tiles.setTileAt(tiles.getTileLocation(48, 68), assets.tile`myTile21`)
+    tiles.setTileAt(tiles.getTileLocation(48, 69), assets.tile`myTile21`)
+    tiles.setTileAt(tiles.getTileLocation(48, 70), assets.tile`myTile21`)
+    tiles.setWallAt(tiles.getTileLocation(48, 68), false)
+    tiles.setWallAt(tiles.getTileLocation(48, 69), false)
+    tiles.setWallAt(tiles.getTileLocation(48, 70), false)
+    tiles.setTileAt(tiles.getTileLocation(38, 46), assets.tile`myTile21`)
+    tiles.setTileAt(tiles.getTileLocation(39, 46), assets.tile`myTile21`)
+    tiles.setTileAt(tiles.getTileLocation(40, 46), assets.tile`myTile21`)
+    tiles.setTileAt(tiles.getTileLocation(41, 46), assets.tile`myTile21`)
+    tiles.setTileAt(tiles.getTileLocation(42, 46), assets.tile`myTile21`)
+    tiles.setTileAt(tiles.getTileLocation(43, 46), assets.tile`myTile21`)
+    tiles.setWallAt(tiles.getTileLocation(38, 46), false)
+    tiles.setWallAt(tiles.getTileLocation(39, 46), false)
+    tiles.setWallAt(tiles.getTileLocation(40, 46), false)
+    tiles.setWallAt(tiles.getTileLocation(41, 46), false)
+    tiles.setWallAt(tiles.getTileLocation(42, 46), false)
+    tiles.setWallAt(tiles.getTileLocation(43, 46), false)
 }
 function Animatronics_create () {
     Maquad = sprites.create(img`
@@ -1329,6 +1330,57 @@ function initialize_sprite_positions_for_night () {
     cleaning_tools.setPosition(940, 650)
     Kokos_mountain.setPosition(712, 120)
     Maquad.setPosition(400, 450)
+    for (let value of tiles.getTilesByType(assets.tile`myTile29`)) {
+        Chairs = sprites.create(img`
+            .............................................
+            .............................................
+            .............................................
+            .............................................
+            .............................................
+            .............................................
+            .............................................
+            .......fffffffffffffffffffffffffffffff.......
+            .......feeeeeeeeeeeeeeeeeeeeeeeeeeeeef.......
+            .......feeeeeeeeeeeeeeeeeeeeeeeeeeeeef.......
+            .......feeeeeeeeeeeeeeeeeeeeeeeeeeeeef.......
+            .......feeeeeeeeeeeeeeeeeeeeeeeeeeeeef.......
+            ffffffffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffffffff
+            feeeeeffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffeeeeef
+            feeeefdfeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdfeeeef
+            ffeeefdfeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdfeeeff
+            ..feefdfeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdfeef..
+            ..feefdfeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdfeef..
+            ..feefdfeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdfeef..
+            ..feefdfeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdfeef..
+            ..feefdfeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdfeef..
+            ffeeefdfeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdfeeeff
+            feeeefdfeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdfeeeef
+            feeeeeffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffeeeeef
+            ffffffffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffffffff
+            .......feeeeeeeeeeeeeeeeeeeeeeeeeeeeef.......
+            .......feeeeeeeeeeeeeeeeeeeeeeeeeeeeef.......
+            .......feeeeeeeeeeeeeeeeeeeeeeeeeeeeef.......
+            .......feeeeeeeeeeeeeeeeeeeeeeeeeeeeef.......
+            .......feeeeeeeeeeeeeeeeeeeeeeeeeeeeef.......
+            .......feeeeeeeeeeeeeeeeeeeeeeeeeeeeef.......
+            .......feeeeeeeeeeeeeeeeeeeeeeeeeeeeef.......
+            .......feeeeeeeeeeeeeeeeeeeeeeeeeeeeef.......
+            .......feeeeeeeeeeeeeeeeeeeeeeeeeeeeef.......
+            .......feeeeeeeeeeeeeeeeeeeeeeeeeeeeef.......
+            .......feeeeeeeeeeeeeeeeeeeeeeeeeeeeef.......
+            .......feeeeeeeeeeeeeeeeeeeeeeeeeeeeef.......
+            .......fffffffffffffffffffffffffffffff.......
+            .......ffdddddddddff.....ffdddddddddff.......
+            .......fefffffffffef.....fefffffffffef.......
+            .......feeeeeeeeeeef.....feeeeeeeeeeef.......
+            .......feeeeeeeeeeef.....feeeeeeeeeeef.......
+            .......feeefffffeeef.....feeefffffeeef.......
+            .......feef.....feef.....feef.....feef.......
+            .......ffff.....ffff.....ffff.....ffff.......
+            `, SpriteKind.chair)
+        tiles.placeOnTile(Chairs, value)
+        tiles.setTileAt(value, assets.tile`transparency16`)
+    }
     Dr_Tangle.setPosition(450, 430)
     Withered_Bongong.setPosition(1000, 550)
     Klevin.setPosition(650, 119)
@@ -1613,6 +1665,7 @@ let double = 0
 let waitTime = 0
 let wpat = 0
 let Target_waypoint_type = 0
+let Chairs: Sprite = null
 let Camera_change_wait_time = 0
 let WP_3_minimum_wait_time = 0
 let WP_2_minimum_wait_time = 0
