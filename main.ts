@@ -1251,6 +1251,7 @@ function Settings () {
     WP_1_minimum_wait_time = 1500
     WP_2_minimum_wait_time = 1500
     WP_3_minimum_wait_time = 1500
+    Camera_change_wait_time = 500
 }
 function Koko_forwards () {
     Koko.setImage(img`
@@ -1492,6 +1493,7 @@ function View_camera (cameras: number[], index: number) {
     }
     camX = cameras[double]
     camY = cameras[double + 1]
+    Camera_change_time = game.runtime()
     scene.centerCameraAt(camX, camY)
 }
 function get_vent_direction (guy: Sprite) {
@@ -1604,12 +1606,14 @@ let temp = 0
 let new_waypoint: Sprite = null
 let vy = 0
 let vx = 0
+let Camera_change_time = 0
 let camY = 0
 let camX = 0
 let double = 0
 let waitTime = 0
 let wpat = 0
 let Target_waypoint_type = 0
+let Camera_change_wait_time = 0
 let WP_3_minimum_wait_time = 0
 let WP_2_minimum_wait_time = 0
 let WP_1_minimum_wait_time = 0
