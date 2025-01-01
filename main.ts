@@ -1426,14 +1426,19 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     }
 })
 function make_Maquads_path () {
-    Path_adder(Maquads_path, 24, 27, "yellow", 1)
-    Path_adder(Maquads_path, 38, 28, "yellow", 0)
-    Path_adder(Maquads_path, 38, 40, "red", 1)
-    Path_adder(Maquads_path, 38, 48, "red", 0)
-    Path_adder(Maquads_path, 52, 48, "red", 1)
-    Path_adder(Maquads_path, 49, 48, "red", 0)
-    Path_adder(Maquads_path, 49, 72, "grey", 1)
-    Path_adder(Maquads_path, 33, 72, "grey", 0)
+    Path_adder(Maquads_path, 64, 22, "yellow", 1)
+    Path_adder(Maquads_path, 73, 23, "yellow", 0)
+    Path_adder(Maquads_path, 73, 34, "red", 0)
+    Path_adder(Maquads_path, 69, 34, "red", 0)
+    Path_adder(Maquads_path, 69, 45, "red", 1)
+    Path_adder(Maquads_path, 69, 55, "red", 0)
+    Path_adder(Maquads_path, 94, 55, "red", 1)
+    Path_adder(Maquads_path, 69, 55, "red", 0)
+    Path_adder(Maquads_path, 69, 72, "grey", 1)
+    Path_adder(Maquads_path, 75, 72, "lime", 1)
+    Path_adder(Maquads_path, 69, 72, "grey", 0)
+    Path_adder(Maquads_path, 69, 69, "grey", 0)
+    Path_adder(Maquads_path, 50, 69, "grey", 0)
 }
 function Koko_backwards () {
     Koko.setImage(img`
@@ -1535,6 +1540,9 @@ function Make_kokos_path () {
     Path_adder(Kokos_path, 49, 72, "grey", 0)
     Path_adder(Kokos_path, 32, 72, "grey", 0)
 }
+function pixels_to_tilemap (pixel: number) {
+    return (pixel - 8) / 16
+}
 function tilemap_to_pixels (tileI: number) {
     return tileI * 16 + 8
 }
@@ -1599,6 +1607,10 @@ function Path_adder (path: Sprite[], x: number, y: number, colour: string, _type
     } else if (colour == "white") {
         new_waypoint.setImage(img`
             1 
+            `)
+    } else if (colour == "lime") {
+        new_waypoint.setImage(img`
+            7 
             `)
     } else {
         new_waypoint.setImage(img`
