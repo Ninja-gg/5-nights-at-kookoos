@@ -1203,6 +1203,25 @@ function White_Foxtail_forwards () {
         ....ffffff.ffffff....
         `)
 }
+controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (screen2 == 2) {
+        if (Change_camera()) {
+            Active_main_camera += -1
+            if (Active_main_camera < 0) {
+                Active_main_camera = Camera_main_number - 1
+            }
+            View_camera(Camera_main_coords, Active_main_camera)
+        }
+    } else if (screen2 == 3) {
+        if (Change_camera()) {
+            Active_vent_camera += -1
+            if (Active_vent_camera < 0) {
+                Active_vent_camera = Camera_vent_number - 1
+            }
+            View_camera(Camera_vent_coords, Active_vent_camera)
+        }
+    }
+})
 function Create_vent_cameras () {
     Camera_adder(Camera_vent_coords, 88, 30)
     Camera_adder(Camera_vent_coords, 81, 37)
@@ -1252,7 +1271,7 @@ function Settings () {
     WP_1_minimum_wait_time = 1500
     WP_2_minimum_wait_time = 1500
     WP_3_minimum_wait_time = 1500
-    Camera_change_wait_time = 500
+    camera_wait_time = 500
 }
 function Koko_forwards () {
     Koko.setImage(img`
@@ -1418,11 +1437,21 @@ function Make_DrTangles_Path () {
 }
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     if (screen2 == 2) {
-        if (Active_main_camera == 0) {
-        	
+        if (Change_camera()) {
+            Active_main_camera += 1
+            if (Active_main_camera >= Camera_main_number) {
+                Active_main_camera = 0
+            }
+            View_camera(Camera_main_coords, Active_main_camera)
         }
     } else if (screen2 == 3) {
-    	
+        if (Change_camera()) {
+            Active_vent_camera += 1
+            if (Active_vent_camera >= Camera_vent_number) {
+                Active_vent_camera = 0
+            }
+            View_camera(Camera_vent_coords, Active_vent_camera)
+        }
     }
 })
 function make_Maquads_path () {
@@ -1553,7 +1582,7 @@ function View_camera (cameras: number[], index: number) {
     }
     camX = cameras[double]
     camY = cameras[double + 1]
-    Camera_change_time = game.runtime()
+    camera_change_time = game.runtime()
     scene.centerCameraAt(camX, camY)
 }
 function get_vent_direction (guy: Sprite) {
@@ -1661,6 +1690,13 @@ function start_night () {
     tiles.setCurrentTilemap(tilemap`level5`)
     initialize_sprite_positions_for_night()
 }
+function Change_camera () {
+    if (game.runtime() - camera_change_time >= camera_wait_time) {
+        return true
+    } else {
+        return false
+    }
+}
 function Teleport_to_waypoint (guy: Sprite, path: Sprite[], toIndex: number) {
     guy.setPosition(path[toIndex].x, path[toIndex].y)
     sprites.setDataNumber(guy, "Target", toIndex + 1)
@@ -1670,7 +1706,6 @@ let temp = 0
 let new_waypoint: Sprite = null
 let vy = 0
 let vx = 0
-let Camera_change_time = 0
 let camY = 0
 let camX = 0
 let double = 0
@@ -1678,7 +1713,7 @@ let waitTime = 0
 let wpat = 0
 let Target_waypoint_type = 0
 let Chairs: Sprite = null
-let Camera_change_wait_time = 0
+let camera_wait_time = 0
 let WP_3_minimum_wait_time = 0
 let WP_2_minimum_wait_time = 0
 let WP_1_minimum_wait_time = 0
@@ -1702,7 +1737,9 @@ let Camera_vent_number = 0
 let Camera_main_number = 0
 let Camera_main_coords: number[] = []
 let Camera_vent_coords: number[] = []
+let Active_vent_camera = 0
 let Active_main_camera = 0
+let camera_change_time = 0
 let screen2 = 0
 let WP_1_Go_or_NoGo_TRUE_is_move_on = false
 let Koko: Sprite = null
@@ -1972,8 +2009,9 @@ WP_1_Go_or_NoGo_TRUE_is_move_on = true
 // 
 // 
 screen2 = 0
+camera_change_time = 0
 Active_main_camera = 0
-let Active_vent_camera = 0
+Active_vent_camera = 0
 Camera_vent_coords = []
 Camera_main_coords = []
 Camera_main_number = 0
