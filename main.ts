@@ -1610,7 +1610,7 @@ function View_camera (cameras: number[], index: number) {
     camX = cameras[double]
     camY = cameras[double + 1]
     Camera_main_minimap.setPosition(camX + 50, camY - 30)
-    TestCursor.setPosition(camX + 50, camY - 30)
+    TestCursor.setPosition(camX + 72, camY - 8)
     camera_change_time = game.runtime()
     scene.centerCameraAt(camX, camY)
 }
