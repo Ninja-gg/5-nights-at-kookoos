@@ -13,6 +13,11 @@ function Animatronic_initialise (guy: Sprite, index: number, AI: number, speed: 
     sprites.setDataNumber(guy, "Direction", 0)
     sprites.setDataBoolean(guy, "In Vent", false)
 }
+scene.onOverlapTile(SpriteKind.securitygaurd, assets.tile`myTile4`, function (sprite, location) {
+    if (Game_On_pizza_boy == 0) {
+        start_night_in_daycare()
+    }
+})
 function Move_on_to_next_waypoint (guy: Sprite, path: any[], target_index: number) {
     // MOVE ON TO THE NEXT WAYPOINT
     target_index = sprites.readDataNumber(guy, "Target") + 1
@@ -352,6 +357,51 @@ function Initialize_sprites () {
         .................................ffffffffffffffffffffffffffffffffffffff................................ffff..........................fffffffffffffffffffffffffffff..............
         `, SpriteKind.Player)
     Kokos_mountain.setPosition(-712, 120)
+    security_camera_desk_thigny = sprites.create(img`
+        ffffffffffffffffffffffffffffffffffffffffffffffffff
+        feeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef
+        feeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef
+        feeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef
+        feeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef
+        feeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef
+        feeeeeeeeefffffffffffffffffffeeeeeeeeeeeeeeeeeeeef
+        feeeeeeeeef99999999999999999feeeeeeeeeeeeeeeeeeeef
+        feeeeeeeeef99999999999999999feeeeeeeeeeeeeeeeeeeef
+        feeeeeeeeef99999999999999999feeeeeeeeeeeeeeeeeeeef
+        feeeeeeeeef99999999999999999feeeeeeeeeeeeeeeeeeeef
+        feeeeeeeeef99999999999999999feeeeeeeeeeeeeeeeeeeef
+        feeeeeeeeef99999999999999999feeeeeeeeeeeeeeeeeeeef
+        feeeeeeeeef99999999999999999feeeeeeeeeeeeeeeeeeeef
+        feeeeeeeeefffffffffffffffffffeeeeeffeeeeeffffeeeef
+        feeeeeeeeeefbfbfbfbfbfbfbfbfeeeeefbbfffffbbbbfeeef
+        feeeeeeeeeefffffffffffffffffeeeeefbbbbbbbbbbbfeeef
+        feeeeeeeeeefbfbfbfbfbfbfbfbfeeeeefbbbbbbbbbbbfeeef
+        feeeeeeeeeefffffffffffffffffeeeeeefffffffffffeeeef
+        feeeeeeeeeefbfbfbfbfbfbfbfbfeeeeeefcccccccccfeeeef
+        feeeeeeeeeefffffffffffffffffeeeeeefcccccccccfeeeef
+        feeeeeeeeeefbfbfbfbfbfbfbfbfeeeeeefffffffffffeeeef
+        feeeeeeeeeefffffffffffffffffeeeeeeeeeeeeeeeeeeeeef
+        feeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef
+        feeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef
+        feeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef
+        feeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef
+        feeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef
+        feeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef
+        feeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef
+        feeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef
+        ffffffffffffffffffffffffffffffffffffffffffffffffff
+        ..........fbbf8888888888888888fbbf................
+        ..........fbbf8888888888888888fbbf................
+        ..........fbbf8888888888888888fbbf................
+        ..........fbbf8888888888888888fbbf................
+        ..........fbbf8888888888888888fbbf................
+        ..........fbbf8ffffffffffffff8fbbf................
+        ...........ffff66666666666666ffff.................
+        .............f6666666666666666f...................
+        .............f6666666666666666f...................
+        ..............fffffffffffffffff...................
+        `, SpriteKind.Player)
+    security_camera_desk_thigny.setPosition(-2500, 0)
     Security_Gaurd = sprites.create(img`
         ........ffffffff.......
         .......feeeeeeeef......
@@ -392,13 +442,24 @@ function Initialize_sprites () {
         `, SpriteKind.securitygaurd)
     Security_Gaurd.setPosition(-700, 1100)
 }
+function initialize_sprite_parking_positions () {
+    night_1.setPosition(-1100, 0)
+    night_2.setPosition(-1100, 0)
+    night_3.setPosition(-1100, 0)
+    night_4.setPosition(-1100, 0)
+    night_5.setPosition(-1100, 0)
+    Custom_night.setPosition(-1100, 0)
+    seletor.setPosition(-100, 0)
+}
 function open_walls_for_night () {
-    tiles.setTileAt(tiles.getTileLocation(48, 68), assets.tile`myTile21`)
-    tiles.setTileAt(tiles.getTileLocation(48, 69), assets.tile`myTile21`)
-    tiles.setTileAt(tiles.getTileLocation(48, 70), assets.tile`myTile21`)
-    tiles.setWallAt(tiles.getTileLocation(48, 68), false)
-    tiles.setWallAt(tiles.getTileLocation(48, 69), false)
-    tiles.setWallAt(tiles.getTileLocation(48, 70), false)
+    tiles.setTileAt(tiles.getTileLocation(68, 58), assets.tile`myTile21`)
+    tiles.setTileAt(tiles.getTileLocation(69, 58), assets.tile`myTile21`)
+    tiles.setTileAt(tiles.getTileLocation(70, 58), assets.tile`myTile21`)
+    tiles.setTileAt(tiles.getTileLocation(71, 58), assets.tile`myTile21`)
+    tiles.setWallAt(tiles.getTileLocation(68, 58), false)
+    tiles.setWallAt(tiles.getTileLocation(69, 58), false)
+    tiles.setWallAt(tiles.getTileLocation(70, 58), false)
+    tiles.setWallAt(tiles.getTileLocation(71, 58), false)
     tiles.setTileAt(tiles.getTileLocation(38, 46), assets.tile`myTile21`)
     tiles.setTileAt(tiles.getTileLocation(39, 46), assets.tile`myTile21`)
     tiles.setTileAt(tiles.getTileLocation(40, 46), assets.tile`myTile21`)
@@ -1289,6 +1350,7 @@ function Settings () {
     WP_2_minimum_wait_time = 1500
     WP_3_minimum_wait_time = 1500
     camera_wait_time = 500
+    phone_calls = true
 }
 function Koko_forwards () {
     Koko.setImage(img`
@@ -1352,14 +1414,17 @@ function Dr_Tangle_forwards () {
         .......fffff...............
         `)
 }
-function initialize_sprite_positions_for_night () {
-    Custom_night.setPosition(-1100, 0)
-    seletor.setPosition(-100, 0)
-    night_1.setPosition(-1100, 0)
-    night_2.setPosition(-1100, 0)
-    night_4.setPosition(-1100, 0)
-    night_5.setPosition(-1100, 0)
-    night_3.setPosition(-1100, 0)
+function Make_withered_Bongongs_path () {
+    Path_adder(Withered_Bongongs_path, 62, 34, "brown", 1)
+    Path_adder(Withered_Bongongs_path, 56, 28, "brown", 0)
+    Path_adder(Withered_Bongongs_path, 51, 28, "brown", 1)
+    Path_adder(Withered_Bongongs_path, 51, 47, "red", 0)
+    Path_adder(Withered_Bongongs_path, 46, 47, "red", 1)
+    Path_adder(Withered_Bongongs_path, 14, 47, "grey", 1)
+    Path_adder(Withered_Bongongs_path, 14, 54, "grey", 1)
+    Path_adder(Withered_Bongongs_path, 14, 57, "grey", 0)
+}
+function initialize_sprite_positions_in_daycare () {
     white_Foxtail.setPosition(975, 475)
     treestructure.setPosition(940, 500)
     Tangels_Lab.setPosition(385, 360)
@@ -1426,16 +1491,7 @@ function initialize_sprite_positions_for_night () {
     x_right.setPosition(tilemap_to_pixels(21), tilemap_to_pixels(73))
     x_left.setPosition(tilemap_to_pixels(10), tilemap_to_pixels(73))
     dummy_waypoint.setPosition(tilemap_to_pixels(-10), tilemap_to_pixels(-10))
-}
-function Make_withered_Bongongs_path () {
-    Path_adder(Withered_Bongongs_path, 62, 34, "brown", 1)
-    Path_adder(Withered_Bongongs_path, 56, 28, "brown", 0)
-    Path_adder(Withered_Bongongs_path, 51, 28, "brown", 1)
-    Path_adder(Withered_Bongongs_path, 51, 47, "red", 0)
-    Path_adder(Withered_Bongongs_path, 46, 47, "red", 1)
-    Path_adder(Withered_Bongongs_path, 14, 47, "grey", 1)
-    Path_adder(Withered_Bongongs_path, 14, 54, "grey", 1)
-    Path_adder(Withered_Bongongs_path, 14, 57, "grey", 0)
+    security_camera_desk_thigny.setPosition(tilemap_to_pixels(33), tilemap_to_pixels(59))
 }
 function Make_DrTangles_Path () {
     Path_adder(Dr_Tangles_path, 28, 26, "blue", 1)
@@ -1519,6 +1575,46 @@ function Koko_backwards () {
         .....ffff.ffff.....
         `)
 }
+function Night1_phone_call () {
+    story.startCutscene(function () {
+        story.printText("hello!", 0, 0)
+        story.printText("and welcome to your first Night here at Kokos Daycare!", 0, 0)
+        story.printText("so... I'm just gonna give you the rundown on what you'll be doing", 0, 0)
+        story.printText("Now you may have noticed this aleready but you have 8 doors sourounding your office", 0, 0)
+        story.printText("if someone is ever trying to break into your office locate them on the security cameras ", 0, 0)
+        story.printText("and stop them with the doors", 0, 0)
+        story.printText("speaking of which, the security cameras can be used with the computer at the center of the office", 0, 0)
+        story.printText("an if your one of those really scaredy cat people who would keep the doors closed the entire night,", 0, 0)
+        story.printText("remember that you have a limited amount of power", 0, 0)
+        story.printText("or at least thats how it works with the doors,", 0, 0)
+        story.printText("you see, the doors work on one of the buildings generators, while all of your other equipment works on the other.", 0, 0)
+        story.printText("at first they were just going to leave all of your equipment on the first generator", 0, 0)
+        story.printText("but the first generator has to power other equipment in the building, like animatronics and stuff", 0, 0)
+        story.printText("so all of the security gaurds that have worked here barely had enough power to check on everything", 0, 0)
+        story.printText("and then after 8 power oughtages I guess they knew that we were going to need more power", 0, 0)
+        story.printText("so they gave us another generator for everything except the doors", 0, 0)
+        story.printText("and meanwhile when the other generator has to share power with at least a million things,", 0, 0)
+        story.printText("our generator has to share with like 3 things so we have tons of power!", 0, 0)
+        story.printText("so all of your equipment besides the doors basically works on unlimited power!", 0, 0)
+        story.printText("I still don't know why they didn't connect the doors to the new generator, whenever I ask they just say", 0, 0)
+        story.printText("some humbo jumbo about security safety and I don't know what they are talking about", 0, 0)
+        story.printText("anyway, I hope you have a great night!", 0, 0)
+        story.printText("oh yeah, uh one more thing,", 0, 0)
+        story.printText("I know one reason people don't come to work here", 0, 0)
+        story.printText("and thats because of the animatronics", 0, 0)
+        story.printText("I know this place seems haunted that they are around.", 0, 0)
+        story.printText("but I am just here to tell you that those animatronics do not have the capability to cause harm to any animal or person", 0, 0)
+        story.printText("the only risk of them, if any", 0, 0)
+        story.printText("is that since they are aloud to roam around at night, they might come over to your office", 0, 0)
+        story.printText("and if they do, that isn't that bad, we just don't want them to distract you from your shift,", 0, 0)
+        story.printText("you know? they sometimes make weird noises and that can be very distracting", 0, 0)
+        story.printText("so if you ever happen to see them on the security cameras heading over towards your office,", 0, 0)
+        story.printText("just close the door to stop them from entering your office", 0, 0)
+        story.printText("like I said, if they do, they won't try to harm you in anyway or do anything to you", 0, 0)
+        story.printText("they just might distract you with their noises and stuff", 0, 0)
+        story.printText("anyway, have a good night!", 0, 0)
+    })
+}
 function Update_animatronic (guy: Sprite, path: Sprite[]) {
     Target_waypoint_type = sprites.readDataNumber(path[sprites.readDataNumber(guy, "Target")], "Type")
     if (!(guy.overlapsWith(path[sprites.readDataNumber(guy, "Target")]))) {
@@ -1569,6 +1665,16 @@ function Update_animatronic (guy: Sprite, path: Sprite[]) {
     } else {
         console.logValue("TargetWaypointType", Target_waypoint_type)
     }
+}
+function start_night_in_daycare () {
+    Game_On_pizza_boy = 1
+    tiles.setCurrentTilemap(tilemap`level5`)
+    Security_Gaurd.setPosition(tilemap_to_pixels(69), tilemap_to_pixels(97))
+    Make_kokos_path()
+    Make_DrTangles_Path()
+    Make_withered_Bongongs_path()
+    make_Maquads_path()
+    initialize_sprite_positions_in_daycare()
 }
 function Make_kokos_path () {
     Path_adder(Kokos_path, 42, 12, "white", 1)
@@ -1712,19 +1818,20 @@ function Path_adder (path: Sprite[], x: number, y: number, colour: string, _type
     sprites.setDataNumber(new_waypoint, "Y", y)
     path.push(new_waypoint)
 }
-function start_night () {
-    Security_Gaurd.setPosition(450, 1100)
-    controller.moveSprite(Security_Gaurd)
-    scene.cameraFollowSprite(Security_Gaurd)
-    tiles.setCurrentTilemap(tilemap`level5`)
-    initialize_sprite_positions_for_night()
-}
 function Change_camera () {
     if (game.runtime() - camera_change_time >= camera_wait_time) {
         return true
     } else {
         return false
     }
+}
+function Start_Night_in_parking_lot () {
+    initialize_sprite_parking_positions()
+    controller.moveSprite(Security_Gaurd)
+    controller.moveSprite(seletor, 0, 0)
+    Security_Gaurd.setPosition(tilemap_to_pixels(9), tilemap_to_pixels(7))
+    tiles.setCurrentTilemap(tilemap`level12`)
+    scene.cameraFollowSprite(Security_Gaurd)
 }
 function Teleport_to_waypoint (guy: Sprite, path: Sprite[], toIndex: number) {
     guy.setPosition(path[toIndex].x, path[toIndex].y)
@@ -1742,6 +1849,7 @@ let waitTime = 0
 let wpat = 0
 let Target_waypoint_type = 0
 let Chairs: Sprite = null
+let phone_calls = false
 let camera_wait_time = 0
 let WP_3_minimum_wait_time = 0
 let WP_2_minimum_wait_time = 0
@@ -1750,6 +1858,7 @@ let WP_0_minimum_wait_time = 0
 let Kokos_Direction = 0
 let Dr_Tangles_Direction = 0
 let white_Foxtail: Sprite = null
+let security_camera_desk_thigny: Sprite = null
 let Kokos_mountain: Sprite = null
 let cleaning_tools: Sprite = null
 let Tangels_Lab: Sprite = null
@@ -1773,6 +1882,7 @@ let Active_main_camera = 0
 let camera_change_time = 0
 let screen2 = 0
 let WP_1_Go_or_NoGo_TRUE_is_move_on = false
+let Game_On_pizza_boy = 0
 let Koko: Sprite = null
 let Klevin: Sprite = null
 let Dr_Tangle: Sprite = null
@@ -2016,12 +2126,8 @@ dummy_waypoint = sprites.create(img`
 sprites.setDataNumber(dummy_waypoint, "Type", -1)
 sprites.setDataNumber(dummy_waypoint, "X", -10)
 sprites.setDataNumber(dummy_waypoint, "Y", -10)
-Animatronics_path_create()
-make_Maquads_path()
-Make_withered_Bongongs_path()
-Make_DrTangles_Path()
-Make_kokos_path()
 Animatronics_create()
+Animatronics_path_create()
 let Animatronics = [
 Maquad,
 Withered_Bongong,
@@ -2031,7 +2137,7 @@ Koko
 ]
 Initialize_sprites()
 Settings()
-let Game_On_pizza_boy = 0
+Game_On_pizza_boy = 0
 WP_1_Go_or_NoGo_TRUE_is_move_on = true
 // 0=Level select
 // 1=Security guard
@@ -2125,31 +2231,31 @@ TestCursor.setPosition(-1000, -500)
 game.onUpdate(function () {
     if (seletor.overlapsWith(night_1)) {
         night = 1
-        start_night()
+        Start_Night_in_parking_lot()
     } else if (seletor.overlapsWith(night_2)) {
         night = 2
-        start_night()
+        Start_Night_in_parking_lot()
     } else if (seletor.overlapsWith(night_3)) {
         night = 3
-        start_night()
+        Start_Night_in_parking_lot()
     } else if (seletor.overlapsWith(night_4)) {
         night = 4
-        start_night()
+        Start_Night_in_parking_lot()
     } else if (seletor.overlapsWith(night_5)) {
         night = 5
-        start_night()
+        Start_Night_in_parking_lot()
         open_walls_for_night()
     } else if (seletor.overlapsWith(Custom_night)) {
         night = -1
-        start_night()
+        Start_Night_in_parking_lot()
         open_walls_for_night()
         Activate_cameras()
     }
     if (Night_started_okay == 0) {
-        if (Security_Gaurd.x > tilemap_to_pixels(10) && Security_Gaurd.x < tilemap_to_pixels(21)) {
-            if (Security_Gaurd.y > tilemap_to_pixels(68) && Security_Gaurd.y < tilemap_to_pixels(78)) {
+        if (Security_Gaurd.x > tilemap_to_pixels(25) && Security_Gaurd.x < tilemap_to_pixels(42)) {
+            if (Security_Gaurd.y > tilemap_to_pixels(53) && Security_Gaurd.y < tilemap_to_pixels(69)) {
                 Night_started_okay = 1
-                Game_On_pizza_boy = 1
+                Game_On_pizza_boy = 2
                 if (night == 1) {
                     scene.cameraFollowSprite(Maquad)
                 }
@@ -2173,7 +2279,7 @@ game.onUpdate(function () {
     }
 })
 game.onUpdate(function () {
-    if (Game_On_pizza_boy == 1) {
+    if (Game_On_pizza_boy == 2) {
         Update_animatronic(Maquad, Maquads_path)
         Update_animatronic(Withered_Bongong, Withered_Bongongs_path)
         temp = sprites.readDataNumber(Dr_Tangle, "Direction")
@@ -2185,6 +2291,23 @@ game.onUpdate(function () {
         Update_animatronic(Koko, Kokos_path)
         if (sprites.readDataNumber(Koko, "Direction") != temp) {
             Kokos_direction_setting()
+        }
+    }
+})
+game.onUpdate(function () {
+    if (phone_calls) {
+        if (night == 1) {
+            Night1_phone_call()
+        } else if (night == 2) {
+        	
+        } else if (night == 3) {
+        	
+        } else if (night == 4) {
+        	
+        } else if (night == 5) {
+        	
+        } else {
+        	
         }
     }
 })
