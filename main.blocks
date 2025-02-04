@@ -75,18 +75,18 @@ f f f f f f f f f f f f f f f f
 `</field><data>{"commentRefs":[],"fieldData":{"img":"zc.ElO9w[7JgVju4-YoE"}}</data></shadow></value><value name="kind"><shadow type="spritekind" id="ih,b?m2+Vq^ZZm_V;#IF"><field name="MEMBER">Player</field></shadow></value></block></value><next><block type="spritesetpos" id="Ez`f(XYP12@(1RCB_8xl"><value name="sprite"><block type="variables_get" id="7;AwP^-v9d3}W(M@=z-K"><field name="VAR" id=".%Z.SRsqnmZT4;OQ!a=#">night 3</field></block></value><value name="x"><shadow type="positionPicker" id="@A6370mRBy)xy=Y8N^(P"><field name="index">70</field></shadow></value><value name="y"><shadow type="positionPicker" id="0l7o5?=v(O-Lq-oA|wO/"><field name="index">10</field></shadow></value><next><block type="variables_set" id="y;OK})#|:7%WRH9XXn#{"><field name="VAR" id="+@7Z@DY1Lp*t~4lrZfyt">night 4</field><value name="VALUE"><shadow xmlns="http://www.w3.org/1999/xhtml" type="math_number"><field name="NUM">0</field></shadow><block type="spritescreate" id="RKM}w8L3l6SpfSMI0~/d"><value name="img"><shadow type="screen_image_picker" id="-0)9!_@0Da2Y3iL.f/aB"><field name="img">img`
 f f f f f f f f f f f f f f f f 
 f 1 1 1 1 1 1 1 1 1 1 1 1 1 1 f 
-f 1 2 1 1 1 1 2 1 1 1 1 1 1 1 f 
-f 1 2 1 1 1 1 2 1 1 1 1 1 1 1 f 
-f 1 2 1 1 1 1 2 1 1 1 1 1 1 1 f 
-f 1 2 1 1 1 1 2 1 1 1 1 1 1 1 f 
-f 1 2 1 1 1 1 2 1 1 1 1 1 1 1 f 
-f 1 2 2 2 2 2 2 2 2 2 2 1 1 1 f 
-f 1 1 1 1 1 1 2 1 1 1 1 1 1 1 f 
-f 1 1 1 1 1 1 2 1 1 1 1 1 1 1 f 
-f 1 1 1 1 1 1 2 1 1 1 1 1 1 1 f 
-f 1 1 1 1 1 1 2 1 1 1 1 1 1 1 f 
-f 1 1 1 1 1 1 2 1 1 1 1 1 1 1 f 
-f 1 1 1 1 1 1 2 1 1 1 1 1 1 1 f 
+f 1 3 1 1 1 1 3 1 1 1 1 1 1 1 f 
+f 1 3 1 1 1 1 3 1 1 1 1 1 1 1 f 
+f 1 3 1 1 1 1 3 1 1 1 1 1 1 1 f 
+f 1 3 1 1 1 1 3 1 1 1 1 1 1 1 f 
+f 1 3 1 1 1 1 3 1 1 1 1 1 1 1 f 
+f 1 3 3 3 3 3 3 3 3 3 3 1 1 1 f 
+f 1 1 1 1 1 1 3 1 1 1 1 1 1 1 f 
+f 1 1 1 1 1 1 3 1 1 1 1 1 1 1 f 
+f 1 1 1 1 1 1 3 1 1 1 1 1 1 1 f 
+f 1 1 1 1 1 1 3 1 1 1 1 1 1 1 f 
+f 1 1 1 1 1 1 3 1 1 1 1 1 1 1 f 
+f 1 1 1 1 1 1 3 1 1 1 1 1 1 1 f 
 f 1 1 1 1 1 1 1 1 1 1 1 1 1 1 f 
 f f f f f f f f f f f f f f f f 
 `</field><data>{"commentRefs":[],"fieldData":{"img":"-0)9!_@0Da2Y3iL.f/aB"}}</data></shadow></value><value name="kind"><shadow type="spritekind" id="}Ey5g.m3cC?|`W@!K^hk"><field name="MEMBER">Player</field></shadow></value></block></value><next><block type="spritesetpos" id="[c1):$jK2lU0w*7-UMCI"><value name="sprite"><block type="variables_get" id="*#QCD86U#k;rCT`Cj-3V"><field name="VAR" id="+@7Z@DY1Lp*t~4lrZfyt">night 4</field></block></value><value name="x"><shadow type="positionPicker" id="_hw{^dr|3TZOT8KPIScW"><field name="index">90</field></shadow></value><value name="y"><shadow type="positionPicker" id="?p-=C`pXp*nraUjxw+%w"><field name="index">10</field></shadow></value><next><block type="variables_set" id="$}Q[{9Xl`%6W8UI;]OzW"><field name="VAR" id="tW8)v::_b+~pkv2ROb:D">night 5</field><value name="VALUE"><shadow xmlns="http://www.w3.org/1999/xhtml" type="math_number"><field name="NUM">0</field></shadow><block type="spritescreate" id="Rl:lqO$kL})S,;_,?Tml"><value name="img"><shadow type="screen_image_picker" id="ih(Gh9%=,/B:?0s=:#H."><field name="img">img`
