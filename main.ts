@@ -45,6 +45,46 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
             screen2 = 2
             View_camera(Camera_main_coords, Active_main_camera)
         }
+    } else if (screen2 == 1) {
+        Security_Gaurd.setImage(img`
+            ........fffffff........
+            .......feeeeeeef.......
+            .......fefffffef.......
+            .......ffcccccff.......
+            .......fffffffff.......
+            .......f5555555f.......
+            .......f5555555f.......
+            .......f5f55f55f.......
+            .......f5555555f.......
+            .......f55fff55f.......
+            ........fff5fff........
+            ..........f5f..........
+            ...fffffffffffffffff...
+            ..fcccccccccccccccccf..
+            .fcccccccccccccccccccf.
+            .fcccfffcccccccfffcccf.
+            .fccf..fcccccccf..fccf.
+            .f55f..fcccccccf..f55f.
+            .f55f..fcccccccf..f55f.
+            .f55f..fcccccccf..f55f.
+            .f55f..fcccccccf..f55f.
+            ff55ff.fcccccccf.ff55ff
+            f5555f.fffffffff.f5555f
+            f5555f.f7777777f.f5555f
+            .ffff..f77fff77f..ffff.
+            .......f77f.f77f.......
+            .......f77f.f77f.......
+            .......f77f.f77f.......
+            .......f77f.f77f.......
+            .......f77f.f77f.......
+            .......f77f.f77f.......
+            .......f77f.f77f.......
+            .......ffff.ffff.......
+            ......f111f.f111f......
+            .....f1111f.f1111f.....
+            .....ffffff.ffffff.....
+            `)
+        facing = 3
     }
 })
 function Activate_cameras () {
@@ -1293,6 +1333,46 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
             }
             View_camera(Camera_vent_coords, Active_vent_camera)
         }
+    } else if (screen2 == 1) {
+        Security_Gaurd.setImage(img`
+            ........ffffffff.......
+            .......feeeeeeeef......
+            ......feeeeeeeeef......
+            .....feeeeeeeeeef......
+            .....ffffffffffff......
+            .......f5555555f.......
+            .......f5f55f55f.......
+            .......f5555555f.......
+            .......f55fff55f.......
+            .......f5555555f.......
+            ........fff5fff........
+            ..........f5f..........
+            ...fffffffffffffffff...
+            ..fcccccccccccccccccf..
+            .fcccccccccccccccccccf.
+            .fcccfffcccccccfffcccf.
+            .fccf..fcccccccf..fccf.
+            .f55f..fcccccccf..f55f.
+            .f55f..fcccccccf..f55f.
+            .f55f..fcccccccf..f55f.
+            .f55f..fcccccccf..f55f.
+            ff55ff.fcccccccf.ff55ff
+            f5555f.fffffffff.f5555f
+            f5555f.f7777777f.f5555f
+            .ffff..f77fff77f..ffff.
+            .......f77f.f77f.......
+            .......f77f.f77f.......
+            .......f77f.f77f.......
+            .......f77f.f77f.......
+            .......f77f.f77f.......
+            .......f77f.f77f.......
+            .......f77f.f77f.......
+            .......ffff.ffff.......
+            ......f111f.f111f......
+            .....f1111f.f1111f.....
+            .....ffffff.ffffff.....
+            `)
+        facing = 2
     }
 })
 function Create_vent_cameras () {
@@ -1350,7 +1430,7 @@ function Settings () {
     WP_2_minimum_wait_time = 1500
     WP_3_minimum_wait_time = 1500
     camera_wait_time = 500
-    phone_calls = true
+    phone_caals = 1
 }
 function Koko_forwards () {
     Koko.setImage(img`
@@ -1525,6 +1605,46 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
             }
             View_camera(Camera_vent_coords, Active_vent_camera)
         }
+    } else if (screen2 == 1) {
+        Security_Gaurd.setImage(img`
+            .......ffffffff........
+            ......feeeeeeeef.......
+            ......feeeeeeeeef......
+            ......feeeeeeeeeef.....
+            ......ffffffffffff.....
+            .......f5555555f.......
+            .......f55f55f5f.......
+            .......f5555555f.......
+            .......f55fff55f.......
+            .......f5555555f.......
+            ........fff5fff........
+            ..........f5f..........
+            ...fffffffffffffffff...
+            ..fcccccccccccccccccf..
+            .fcccccccccccccccccccf.
+            .fcccfffcccccccfffcccf.
+            .fccf..fcccccccf..fccf.
+            .f55f..fcccccccf..f55f.
+            .f55f..fcccccccf..f55f.
+            .f55f..fcccccccf..f55f.
+            .f55f..fcccccccf..f55f.
+            ff55ff.fcccccccf.ff55ff
+            f5555f.fffffffff.f5555f
+            f5555f.f7777777f.f5555f
+            .ffff..f77fff77f..ffff.
+            .......f77f.f77f.......
+            .......f77f.f77f.......
+            .......f77f.f77f.......
+            .......f77f.f77f.......
+            .......f77f.f77f.......
+            .......f77f.f77f.......
+            .......f77f.f77f.......
+            .......ffff.ffff.......
+            ......f111f.f111f......
+            .....f1111f.f1111f.....
+            .....ffffff.ffffff.....
+            `)
+        facing = 1
     }
 })
 function make_Maquads_path () {
@@ -1577,42 +1697,21 @@ function Koko_backwards () {
 }
 function Night1_phone_call () {
     story.startCutscene(function () {
-        story.printText("hello!", 0, 0)
-        story.printText("and welcome to your first Night here at Kokos Daycare!", 0, 0)
-        story.printText("so... I'm just gonna give you the rundown on what you'll be doing", 0, 0)
-        story.printText("Now you may have noticed this aleready but you have 8 doors sourounding your office", 0, 0)
-        story.printText("if someone is ever trying to break into your office locate them on the security cameras ", 0, 0)
-        story.printText("and stop them with the doors", 0, 0)
-        story.printText("speaking of which, the security cameras can be used with the computer at the center of the office", 0, 0)
-        story.printText("an if your one of those really scaredy cat people who would keep the doors closed the entire night,", 0, 0)
-        story.printText("remember that you have a limited amount of power", 0, 0)
-        story.printText("or at least thats how it works with the doors,", 0, 0)
-        story.printText("you see, the doors work on one of the buildings generators, while all of your other equipment works on the other.", 0, 0)
-        story.printText("at first they were just going to leave all of your equipment on the first generator", 0, 0)
-        story.printText("but the first generator has to power other equipment in the building, like animatronics and stuff", 0, 0)
-        story.printText("so all of the security gaurds that have worked here barely had enough power to check on everything", 0, 0)
-        story.printText("and then after 8 power oughtages I guess they knew that we were going to need more power", 0, 0)
-        story.printText("so they gave us another generator for everything except the doors", 0, 0)
-        story.printText("and meanwhile when the other generator has to share power with at least a million things,", 0, 0)
-        story.printText("our generator has to share with like 3 things so we have tons of power!", 0, 0)
-        story.printText("so all of your equipment besides the doors basically works on unlimited power!", 0, 0)
-        story.printText("I still don't know why they didn't connect the doors to the new generator, whenever I ask they just say", 0, 0)
-        story.printText("some humbo jumbo about security safety and I don't know what they are talking about", 0, 0)
-        story.printText("anyway, I hope you have a great night!", 0, 0)
-        story.printText("oh yeah, uh one more thing,", 0, 0)
-        story.printText("I know one reason people don't come to work here", 0, 0)
-        story.printText("and thats because of the animatronics", 0, 0)
-        story.printText("I know this place seems haunted that they are around.", 0, 0)
-        story.printText("but I am just here to tell you that those animatronics do not have the capability to cause harm to any animal or person", 0, 0)
-        story.printText("the only risk of them, if any", 0, 0)
-        story.printText("is that since they are aloud to roam around at night, they might come over to your office", 0, 0)
-        story.printText("and if they do, that isn't that bad, we just don't want them to distract you from your shift,", 0, 0)
-        story.printText("you know? they sometimes make weird noises and that can be very distracting", 0, 0)
-        story.printText("so if you ever happen to see them on the security cameras heading over towards your office,", 0, 0)
-        story.printText("just close the door to stop them from entering your office", 0, 0)
-        story.printText("like I said, if they do, they won't try to harm you in anyway or do anything to you", 0, 0)
-        story.printText("they just might distract you with their noises and stuff", 0, 0)
-        story.printText("anyway, have a good night!", 0, 0)
+        story.printCharacterText("hello! and welcome to your first night here at Kokos daycare!", "phone Guy")
+        story.printCharacterText("so... I'm just gonna give you the rundown on what you'll be doing.", "phone Guy")
+        story.printCharacterText("Now you may have noticed aleready but you have 8 doors around your office.", "phone Guy")
+        story.printCharacterText("if someone iis tryying to break in, locate them and close the correct door.", "phone Guy")
+        story.printCharacterText("speaking of which, the security cameras can be used at the desk in the center of the office.", "phone Guy")
+        story.printCharacterText("an if your one of those really scaredy cat people who'd close the doors", "phone Guy")
+        story.printCharacterText("the whle night, remember your doors have a limited amount of power.", "phone Guy")
+        story.printCharacterText("your security cameras and other equipment works on one of the generators and the doors work on the other.", "phone Guy")
+        story.printCharacterText("you know? power is a very resourcefull thing.", "phone Guy")
+        story.printCharacterText("in most worksitess its simple: everything woerks on one generator.", "phone Guy")
+        story.printCharacterText("here though your doors work on the low powered generator and everything else you have works on the high powered one.", "phone Guy")
+        story.printCharacterText("the low powered one has to share its power with at least a million things, but the high powered one,", "phone Guy")
+        story.printCharacterText("only has to share its powwer with everything besides the doors.", "phone Guy")
+        story.cancelCurrentCutscene()
+        controller.moveSprite(Security_Gaurd, 100, 100)
     })
 }
 function Update_animatronic (guy: Sprite, path: Sprite[]) {
@@ -1700,6 +1799,45 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
         }
     } else if (screen2 == 3) {
     	
+    } else if (screen2 == 1) {
+        Security_Gaurd.setImage(img`
+            ........fffffff........
+            .......f.......f.......
+            ......fffffffff........
+            ......ffeeeeeeef.......
+            .......feeeeeeef.......
+            .......feeeeeeef.......
+            .......ffeeeeeff.......
+            .......f5fffff5f.......
+            .......f5555555f.......
+            .......f5555555f.......
+            ........fff5fff........
+            ..........f5f..........
+            ...fffffffffffffffff...
+            ..fcccccccccccccccccf..
+            .fcccccccccccccccccccf.
+            .fcccfffcccccccfffcccf.
+            .fccf..fcccccccf..fccf.
+            .f55f..fcccccccf..f55f.
+            .f55f..fcccccccf..f55f.
+            .f55f..fcccccccf..f55f.
+            .f55f..fcccccccf..f55f.
+            ff55ff.fcccccccf.ff55ff
+            f5555f.fffffffff.f5555f
+            f5555f.f7777777f.f5555f
+            .ffff..f77fff77f..ffff.
+            .......f77f.f77f.......
+            .......f77f.f77f.......
+            .......f77f.f77f.......
+            .......f77f.f77f.......
+            .......f77f.f77f.......
+            .......f77f.f77f.......
+            .......f77f.f77f.......
+            .......ffff.ffff.......
+            ......f111f.f111f......
+            .....f1111f.f1111f.....
+            .....ffffff.ffffff.....
+            `)
     }
 })
 function pixels_to_tilemap (pixel: number) {
@@ -1849,7 +1987,7 @@ let waitTime = 0
 let wpat = 0
 let Target_waypoint_type = 0
 let Chairs: Sprite = null
-let phone_calls = false
+let phone_caals = 0
 let camera_wait_time = 0
 let WP_3_minimum_wait_time = 0
 let WP_2_minimum_wait_time = 0
@@ -1873,6 +2011,7 @@ let Maquads_path: Sprite[] = []
 let target_index = 0
 let TestCursor: Sprite = null
 let Camera_main_minimap: Sprite = null
+let facing = 0
 let Camera_vent_number = 0
 let Camera_main_number = 0
 let Camera_main_coords: number[] = []
@@ -2153,6 +2292,7 @@ Camera_vent_coords = []
 Camera_main_coords = []
 Camera_main_number = 0
 Camera_vent_number = 0
+facing = 0
 Create_main_cameras()
 Create_vent_cameras()
 Camera_main_minimap = sprites.create(img`
@@ -2251,32 +2391,6 @@ game.onUpdate(function () {
         open_walls_for_night()
         Activate_cameras()
     }
-    if (Night_started_okay == 0) {
-        if (Security_Gaurd.x > tilemap_to_pixels(25) && Security_Gaurd.x < tilemap_to_pixels(42)) {
-            if (Security_Gaurd.y > tilemap_to_pixels(53) && Security_Gaurd.y < tilemap_to_pixels(69)) {
-                Night_started_okay = 1
-                Game_On_pizza_boy = 2
-                if (night == 1) {
-                    scene.cameraFollowSprite(Maquad)
-                }
-                if (night == 2) {
-                    scene.cameraFollowSprite(Withered_Bongong)
-                }
-                if (night == 3) {
-                    scene.cameraFollowSprite(Dr_Tangle)
-                }
-                if (night == 4) {
-                    scene.cameraFollowSprite(Koko)
-                }
-                if (night == 5) {
-                	
-                }
-                if (night == -1) {
-                    Activate_cameras()
-                }
-            }
-        }
-    }
 })
 game.onUpdate(function () {
     if (Game_On_pizza_boy == 2) {
@@ -2295,8 +2409,133 @@ game.onUpdate(function () {
     }
 })
 game.onUpdate(function () {
-    if (phone_calls) {
+    if (phone_caals == 1 && Security_Gaurd.overlapsWith(security_camera_desk_thigny)) {
+        controller.moveSprite(Security_Gaurd, 0, 0)
+        scene.setBackgroundImage(img`
+            ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+            fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+            ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbfffffffffffffffffffffffffffffffffffffffffffffffffffffff
+            ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbfffffffffffffffffffffffffffffffffffffffffffffffffffff
+            ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbfffffffffffffffffffffffffffffffffffffffffffffffffff
+            fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbffffffffffffffffffffffffffffffffffffffffffffffffff
+            ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfffffffffffffffffffffffffffffffffffffffffffffffff
+            fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbffffffffffffffffffffffffffffffffffffffffffffffff
+            ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfffffffffffffffffffffffffffffffffffffffffffffff
+            fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbffffffffffffffffffffffffffffffffffffffffffffff
+            ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfffffffffffffffffffffffffffffffffffffffffffff
+            ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfffffffffffffffffffffffffffffffffffffffffffff
+            fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbffffffffffffffffffffffffffffffffffffffffffff
+            fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbffffffffffffffffffffffffffffffffffffffffffff
+            ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfffffffffffffffffffffffffffffffffffffffffff
+            ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfffffffffffffffffffffffffffffffffffffffffff
+            ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfdddddfffffffffffffffffffffffffffffffffffff
+            fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfdddddffffffffffffffffffffffffffffffffffff
+            fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfddddddfffffffffffffffffffffffffffffffffff
+            fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfddddddfffffffffffffffffffffffffffffffffff
+            fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfddddddfffffffffffffffffffffffffffffffffff
+            fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfddddddfffffffffffffffffffffffffffffffffff
+            fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffdddfbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfddddddfffffffffffffffffffffffffffffffffff
+            fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffdddddfbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfddddddfffffffffffffffffffffffffffffffffff
+            ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffddddddddfbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfddddddfffffffffffffffffffffffffffffffffff
+            ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffddddddddddfbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfddddddfffffffffffffffffffffffffffffffffff
+            fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffdddddddddddddfbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfddddddfffffffffffffffffffffffffffffffffff
+            ffffffffffffffffffffffffffffffffffffffffffffffffffffffddddddddddddddddddfbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfddddddfffffffffffffffffffffffffffffffffff
+            ffffffffffffffffffffffffffffffffffffffffffffffffffffddddddddddddddddddddfbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfdddddffffffffffffffffffffffffffffffffffff
+            fffffffffffffffffffffffffffffffffffffffffffffffffdddddddddddddddddddddddfbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfddddfffffffffffffffffffffffffffffffffffff
+            ffffffffffffffffffffffffffffffffffffffffffffffdddddddddddddddddddddddddddfbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfddddffffffffffffffffffffffffffffffffffffff
+            dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfdddfffffffffffffffffffffffffffffffffffffff
+            dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfdfffffffffffffffffffffffffffffffffffffffff
+            ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbffffffffffffffffffffffffffffffffffffffffffff
+            ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfddddfffffffffffffffffffffffffffffffffffffff
+            dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfdddddddfffffffffffffffffffffffffffffffffffff
+            dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfddddddddffffffffffffffffffffffffffffffffffff
+            ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfdddddddddffffffffffffffffffffffffffffffffffff
+            dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfdddddddddddfffffffffffffffffffffffffffffffffff
+            ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfddddddddddddfffffffffffffffffffffffffffffffffff
+            dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfdddddddddddddfffffffffffffffffffffffffffffffffff
+            dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbffdddddddddddddfffffffffffffffffffffffffffffffffff
+            dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfcfbbbbbbbbbbbbbbbbbbbbbbbbbbbfcfdddddddddddddfffffffffffffffffffffffffffffffffff
+            dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfccffbbbbbbbbbbbbbbbbbbbbbbbffccfdddddddddddddfffffffffffffffffffffffffffffffffff
+            dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfccccffbbbbbbbbbbbbbbbbbbbffccccfdddddddddddddfffffffffffffffffffffffffffffffffff
+            dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfccccccfffbbbbbbbbbbbbbfffccccccfdddddddddddddfffffffffffffffffffffffffffffffffff
+            dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfcccccccccfffffffffffffcccccccccfdddddddddddddfffffffffffffffffffffffffffffffffff
+            dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfcccccccccccccccccccccccccccccccfdddddddddddddfffffffffffffffffffffffffffffffffff
+            dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfcccccccccccccccccccccccccccccccfdddddddddddddfffffffffffffffffffffffffffffffffff
+            dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfcccccccccccccccccccccccccccccccfdddddddddddddfffffffffffffffffffffffffffffffffff
+            dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfcccccccccccccccccccccccccccccccfdddddddddddddfffffffffffffffffffffffffffffffffff
+            dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfcccccccccccccccccccccccccccccccfdddddddddddddfffffffffffffffffffffffffffffffffff
+            dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfcccccccccccccccccccccccccccccccfdddddddddddddfffffffffffffffffffffffffffffffffff
+            dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfcccccccccccccccccccccccccccccccfddddddddddddffffffffffffffffffffffffffffffffffff
+            dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfcccccccccccccccccccccccccccccccfdddddddddddfffffffffffffffffffffffffffffffffffff
+            dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfcccccccccccccccccccccccccccccccfddddddddddffffffffffffffffffffffffffffffffffffff
+            dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfcccccccccccccccccccccccccccccccfdddddddddfffffffffffffffffffffffffffffffffffffff
+            dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfcccccccccccccccccccccccccccccccfdddddddddfffffffffffffffffffffffffffffffffffffff
+            dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfcccccccccccccccccccccccccccccccfffffffffffffffffffffffffffffffffffffffffffffffff
+            dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfcccccccccccccccccccccccccccccccfddddddddddffffffffffffffffffffffffffffffffffffff
+            dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfcccccccccccccccccccccccccccccccfddddddddddddffffffffffffffffffffffffffffffffffff
+            dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfcccccccccccccccccccccccccccccccfdddddddddddddfffffffffffffffffffffffffffffffffff
+            dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfcccccccccccccccccccccccccccccccfdddddddddddddfffffffffffffffffffffffffffffffffff
+            dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfcccccccccccccccccccccccccccccccfddddddddddddddffffffffffffffffffffffffffffffffff
+            dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfcccccccccccccccccccccccccccccccfddddddddddddddffffffffffffffffffffffffffffffffff
+            dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfcccccccccccccccccccccccccccccccfddddddddddddddffffffffffffffffffffffffffffffffff
+            dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfcccccccccccccccccccccccccccccccfddddddddddddddffffffffffffffffffffffffffffffffff
+            ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddffffffffffffffffffffcccccccccccccfddddddddddddddffffffffffffffffffffffffffffffffff
+            ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfffffffccccccfddddddddddddddffffffffffffffffffffffffffffffffff
+            dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddffffccfddddddddddddddffffffffffffffffffffffffffffffffff
+            dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfffddddddddddddddffffffffffffffffffffffffffffffffff
+            ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddffddddddddddddddffffffffffffffffffffffffffffffffff
+            dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfddddddddddddddffffffffffffffffffffffffffffffffff
+            dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddffdddddddddddddffffffffffffffffffffffffffffffffff
+            dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfddddddddddddffffffffffffffffffffffffffffffffff
+            dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfddddddddddddffffffffffffffffffffffffffffffffff
+            ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfddddddddddfffffffffffffffffffffffffffffffffff
+            dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfddddddddffffffffffffffffffffffffffffffffffff
+            dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfdddddddfffffffffffffffffffffffffffffffffffff
+            dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfdddddddfffffffffffffffffffffffffffffffffffff
+            ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddffffffffffffffffffffffffffffffffffffffffffff
+            ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfdddddddddffffffffffffffffffffffffffffffffff
+            ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfddddddddddfffffffffffffffffffffffffffffffff
+            ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfddddddddddfffffffffffffffffffffffffffffffff
+            ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfdddddddddddffffffffffffffffffffffffffffffff
+            ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfdddddddddddffffffffffffffffffffffffffffffff
+            dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfddddddddddddffffffffffffffffffffffffffffffff
+            dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfddddddddddddffffffffffffffffffffffffffffffff
+            fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffddddddddddddddddddddddddddddddddddddddddddddddddfddddddddddddffffffffffffffffffffffffffffffff
+            ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffdddddddddddddddddddddddddddddddddddddddddddddddfddddddddddddffffffffffffffffffffffffffffffff
+            ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffddddddddddddddddddddddddddddddddddddddddddddfdddddddddddddffffffffffffffffffffffffffffffff
+            ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffddddddddddddddddddddddddddddddddddddddddddfdddddddddddddffffffffffffffffffffffffffffffff
+            ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffddddddddddddddddddddddddddddddddddddddddfdddddddddddddffffffffffffffffffffffffffffffff
+            ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffddddddddddddddddddddddddddfffffffffffffdddddddddddddffffffffffffffffffffffffffffffff
+            fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbffccccfddddddddddddddddffffffffffffffffffffffffffffffff
+            ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffccffbbbbbbbbbbbbbbbbbbbbbbbffccfddddddddddddddddffffffffffffffffffffffffffffffff
+            ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffcfbbbbbbbbbbbbbbbbbbbbbbbbbbbfcfddddddddddddddddffffffffffffffffffffffffffffffff
+            fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbffdddddddddddddddfffffffffffffffffffffffffffffffff
+            ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfdddddddddddddddfffffffffffffffffffffffffffffffff
+            fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfdddddddddddddffffffffffffffffffffffffffffffffff
+            ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfdddddddddddfffffffffffffffffffffffffffffffffff
+            fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbffffffffffffffffffffffffffffffffffffffffffffff
+            ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfffffffffffffffffffffffffffffffffffffffffffff
+            ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfffffffffffffffffffffffffffffffffffffffffffff
+            fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbffffffffffffffffffffffffffffffffffffffffffff
+            fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbffffffffffffffffffffffffffffffffffffffffffff
+            ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfffffffffffffffffffffffffffffffffffffffffff
+            ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfffffffffffffffffffffffffffffffffffffffffff
+            ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfffffffffffffffffffffffffffffffffffffffffff
+            fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbffffffffffffffffffffffffffffffffffffffffff
+            fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbffffffffffffffffffffffffffffffffffffffffff
+            fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbffffffffffffffffffffffffffffffffffffffffff
+            fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbffffffffffffffffffffffffffffffffffffffffff
+            fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbffffffffffffffffffffffffffffffffffffffffff
+            fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbffffffffffffffffffffffffffffffffffffffffff
+            fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbffffffffffffffffffffffffffffffffffffffffff
+            fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbffffffffffffffffffffffffffffffffffffffffff
+            fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbffffffffffffffffffffffffffffffffffffffffff
+            fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbffffffffffffffffffffffffffffffffffffffffff
+            fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbffffffffffffffffffffffffffffffffffffffffff
+            `)
+        scene.centerCameraAt(tilemap_to_pixels(23), tilemap_to_pixels(97))
         if (night == 1) {
+            phone_caals = 2
             Night1_phone_call()
         } else if (night == 2) {
         	
