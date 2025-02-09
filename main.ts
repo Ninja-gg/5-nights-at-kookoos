@@ -1517,12 +1517,16 @@ function Make_withered_Bongongs_path () {
     Path_adder(Withered_Bongongs_path, 41, 44, "grey", 0)
 }
 function initialize_sprite_positions_in_daycare () {
+    Koko.setPosition(680, 200)
+    Klevin.setPosition(650, 119)
+    Dr_Tangle.setPosition(450, 430)
+    Withered_Bongong.setPosition(1000, 550)
     white_Foxtail.setPosition(975, 475)
+    Maquad.setPosition(Maquads_path[1].x, Maquads_path[1].y)
     treestructure.setPosition(940, 500)
     Tangels_Lab.setPosition(385, 360)
     cleaning_tools.setPosition(940, 650)
     Kokos_mountain.setPosition(712, 120)
-    Maquad.setPosition(Maquads_path[1].x, Maquads_path[1].y)
     for (let value of tiles.getTilesByType(assets.tile`myTile29`)) {
         Chairs = sprites.create(img`
             .............................................
@@ -1574,10 +1578,6 @@ function initialize_sprite_positions_in_daycare () {
         tiles.placeOnTile(Chairs, value)
         tiles.setTileAt(value, assets.tile`transparency16`)
     }
-    Dr_Tangle.setPosition(450, 430)
-    Withered_Bongong.setPosition(1000, 550)
-    Klevin.setPosition(650, 119)
-    Koko.setPosition(680, 200)
     y_top.setPosition(tilemap_to_pixels(16), tilemap_to_pixels(68))
     y_bottom.setPosition(tilemap_to_pixels(16), tilemap_to_pixels(78))
     x_right.setPosition(tilemap_to_pixels(21), tilemap_to_pixels(73))
