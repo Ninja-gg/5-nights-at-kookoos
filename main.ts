@@ -513,6 +513,17 @@ function open_walls_for_night () {
     tiles.setWallAt(tiles.getTileLocation(42, 46), false)
     tiles.setWallAt(tiles.getTileLocation(43, 46), false)
 }
+function Make_White_Foxtails_path () {
+    Path_adder(White_Foxtails_Path, 99, 27, "brown", 1)
+    Path_adder(White_Foxtails_Path, 92, 31, "grey", 2)
+    Path_adder(White_Foxtails_Path, 139, 53, "dark grey", 0)
+    Path_adder(White_Foxtails_Path, 139, 55, "dark grey", 1)
+    Path_adder(White_Foxtails_Path, 139, 81, "dark grey", 1)
+    Path_adder(White_Foxtails_Path, 139, 87, "dark grey", 0)
+    Path_adder(White_Foxtails_Path, 123, 87, "dark grey", 1)
+    Path_adder(White_Foxtails_Path, 106, 87, "white", 3)
+    Path_adder(White_Foxtails_Path, 37, 61, "grey", 0)
+}
 function Animatronics_create () {
     Maquad = sprites.create(img`
         ............ff............
@@ -1495,14 +1506,15 @@ function Dr_Tangle_forwards () {
         `)
 }
 function Make_withered_Bongongs_path () {
-    Path_adder(Withered_Bongongs_path, 62, 34, "brown", 1)
-    Path_adder(Withered_Bongongs_path, 56, 28, "brown", 0)
-    Path_adder(Withered_Bongongs_path, 51, 28, "brown", 1)
-    Path_adder(Withered_Bongongs_path, 51, 47, "red", 0)
-    Path_adder(Withered_Bongongs_path, 46, 47, "red", 1)
-    Path_adder(Withered_Bongongs_path, 14, 47, "grey", 1)
-    Path_adder(Withered_Bongongs_path, 14, 54, "grey", 1)
-    Path_adder(Withered_Bongongs_path, 14, 57, "grey", 0)
+    Path_adder(Withered_Bongongs_path, 105, 30, "brown", 1)
+    Path_adder(Withered_Bongongs_path, 93, 23, "brown", 0)
+    Path_adder(Withered_Bongongs_path, 87, 23, "brown", 1)
+    Path_adder(Withered_Bongongs_path, 86, 23, "brown", 0)
+    Path_adder(Withered_Bongongs_path, 86, 34, "red", 0)
+    Path_adder(Withered_Bongongs_path, 69, 35, "red", 1)
+    Path_adder(Withered_Bongongs_path, 45, 35, "grey", 1)
+    Path_adder(Withered_Bongongs_path, 41, 43, "grey", 1)
+    Path_adder(Withered_Bongongs_path, 41, 44, "grey", 0)
 }
 function initialize_sprite_positions_in_daycare () {
     white_Foxtail.setPosition(975, 475)
@@ -1574,19 +1586,19 @@ function initialize_sprite_positions_in_daycare () {
     security_camera_desk_thigny.setPosition(tilemap_to_pixels(33), tilemap_to_pixels(59))
 }
 function Make_DrTangles_Path () {
-    Path_adder(Dr_Tangles_path, 28, 26, "blue", 1)
-    Path_adder(Dr_Tangles_path, 21, 28, "grey", 2)
-    Path_adder(Dr_Tangles_path, 97, 30, "dark grey", 0)
-    Path_adder(Dr_Tangles_path, 86, 30, "dark grey", 1)
-    Path_adder(Dr_Tangles_path, 81, 30, "dark grey", 0)
-    Path_adder(Dr_Tangles_path, 81, 39, "dark grey", 1)
-    Path_adder(Dr_Tangles_path, 81, 43, "dark grey", 0)
-    Path_adder(Dr_Tangles_path, 87, 43, "dark grey", 3)
-    Path_adder(Dr_Tangles_path, 2, 41, "grey", 0)
-    Path_adder(Dr_Tangles_path, 3, 43, "dark grey", 1)
-    Path_adder(Dr_Tangles_path, 3, 47, "grey", 0)
-    Path_adder(Dr_Tangles_path, 12, 47, "grey", 1)
-    Path_adder(Dr_Tangles_path, 12, 57, "grey", 0)
+    Path_adder(Dr_Tangles_path, 59, 23, "yellow", 1)
+    Path_adder(Dr_Tangles_path, 56, 23, "grey", 2)
+    Path_adder(Dr_Tangles_path, 147, 34, "dark grey", 0)
+    Path_adder(Dr_Tangles_path, 138, 34, "dark grey", 1)
+    Path_adder(Dr_Tangles_path, 131, 34, "dark grey", 0)
+    Path_adder(Dr_Tangles_path, 131, 41, "dark grey", 1)
+    Path_adder(Dr_Tangles_path, 131, 47, "dark grey", 0)
+    Path_adder(Dr_Tangles_path, 137, 47, "orange", 3)
+    Path_adder(Dr_Tangles_path, 36, 29, "grey", 0)
+    Path_adder(Dr_Tangles_path, 38, 30, "dark grey", 1)
+    Path_adder(Dr_Tangles_path, 37, 35, "grey", 0)
+    Path_adder(Dr_Tangles_path, 41, 35, "grey", 1)
+    Path_adder(Dr_Tangles_path, 41, 44, "grey", 0)
 }
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     if (screen2 == 2) {
@@ -1786,23 +1798,29 @@ function start_night_in_daycare () {
     Make_DrTangles_Path()
     Make_withered_Bongongs_path()
     make_Maquads_path()
+    Make_Klevins_path()
+    Make_White_Foxtails_path()
     initialize_sprite_positions_in_daycare()
 }
 function Make_kokos_path () {
-    Path_adder(Kokos_path, 42, 12, "white", 1)
-    Path_adder(Kokos_path, 45, 21, "white", 1)
-    Path_adder(Kokos_path, 45, 39, "red", 0)
-    Path_adder(Kokos_path, 53, 46, "red", 0)
-    Path_adder(Kokos_path, 56, 46, "grey", 1)
-    Path_adder(Kokos_path, 68, 46, "grey", 2)
-    Path_adder(Kokos_path, 89, 2, "dark grey", 0)
-    Path_adder(Kokos_path, 94, 2, "dark grey", 0)
-    Path_adder(Kokos_path, 94, 13, "dark grey", 1)
-    Path_adder(Kokos_path, 94, 21, "dark grey", 0)
-    Path_adder(Kokos_path, 85, 21, "dark grey", 1)
-    Path_adder(Kokos_path, 62, 21, "dark grey", 3)
-    Path_adder(Kokos_path, 49, 72, "grey", 0)
-    Path_adder(Kokos_path, 32, 72, "grey", 0)
+    Path_adder(Kokos_path, 72, 2, "white", 1)
+    Path_adder(Kokos_path, 80, 16, "white", 1)
+    Path_adder(Kokos_path, 80, 34, "red", 0)
+    Path_adder(Kokos_path, 93, 34, "red", 0)
+    Path_adder(Kokos_path, 93, 42, "red", 0)
+    Path_adder(Kokos_path, 108, 42, "grey", 1)
+    Path_adder(Kokos_path, 117, 42, "grey", 2)
+    Path_adder(Kokos_path, 142, 2, "dark grey", 0)
+    Path_adder(Kokos_path, 147, 2, "dark grey", 0)
+    Path_adder(Kokos_path, 147, 8, "dark grey", 1)
+    Path_adder(Kokos_path, 147, 20, "dark grey", 0)
+    Path_adder(Kokos_path, 133, 20, "dark grey", 1)
+    Path_adder(Kokos_path, 116, 20, "pink", 3)
+    Path_adder(Kokos_path, 70, 72, "grey", 0)
+    Path_adder(Kokos_path, 85, 72, "white", 1)
+    Path_adder(Kokos_path, 70, 72, "grey", 0)
+    Path_adder(Kokos_path, 67, 69, "grey", 0)
+    Path_adder(Kokos_path, 50, 69, "grey", 0)
 }
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     if (screen2 == 2) {
@@ -1983,6 +2001,18 @@ function Start_Night_in_parking_lot () {
     Security_Gaurd.setPosition(tilemap_to_pixels(9), tilemap_to_pixels(7))
     tiles.setCurrentTilemap(tilemap`level12`)
     scene.cameraFollowSprite(Security_Gaurd)
+}
+function Make_Klevins_path () {
+    Path_adder(Klevins_path, 82, 3, "white", 1)
+    Path_adder(Klevins_path, 80, 18, "white", 0)
+    Path_adder(Klevins_path, 80, 34, "red", 0)
+    Path_adder(Klevins_path, 91, 34, "red", 0)
+    Path_adder(Klevins_path, 92, 54, "red", 1)
+    Path_adder(Klevins_path, 69, 56, "grey", 0)
+    Path_adder(Klevins_path, 69, 71, "grey", 1)
+    Path_adder(Klevins_path, 69, 38, "red", 1)
+    Path_adder(Klevins_path, 69, 47, "red", 0)
+    Path_adder(Klevins_path, 56, 47, "white", 1)
 }
 function Teleport_to_waypoint (guy: Sprite, path: Sprite[], toIndex: number) {
     guy.setPosition(path[toIndex].x, path[toIndex].y)
