@@ -1387,18 +1387,24 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     }
 })
 function Create_vent_cameras () {
-    Camera_adder(Camera_vent_coords, 147, 9)
-    Camera_adder(Camera_vent_coords, 127, 20)
-    Camera_adder(Camera_vent_coords, 138, 34)
-    Camera_adder(Camera_vent_coords, 131, 41)
-    Camera_adder(Camera_vent_coords, 139, 59)
-    Camera_adder(Camera_vent_coords, 139, 78)
-    Camera_adder(Camera_vent_coords, 116, 87)
+    Camera_adder(Camera_vent_coords, 147, 9, "Vent A, cam 1", Camera_vent_descriptions)
+    Camera_adder(Camera_vent_coords, 127, 20, "Vent A, cam 2", Camera_vent_descriptions)
+    Camera_adder(Camera_vent_coords, 138, 34, "Vent B, cam 1", Camera_vent_descriptions)
+    Camera_adder(Camera_vent_coords, 131, 41, "Vent B, cam 2", Camera_vent_descriptions)
+    Camera_adder(Camera_vent_coords, 139, 59, "Vent C, cam 1", Camera_vent_descriptions)
+    Camera_adder(Camera_vent_coords, 139, 78, "Vent C, cam 2", Camera_vent_descriptions)
+    Camera_adder(Camera_vent_coords, 116, 87, "Vent C, cam 3", Camera_vent_descriptions)
     Camera_vent_number = Camera_vent_coords.length / 2
 }
-function Camera_adder (cameras: number[], x: number, y: number) {
+function Camera_adder (cameras: number[], x: number, y: number, description: string, descriptions: string[]) {
     cameras.push(tilemap_to_pixels(x))
     cameras.push(tilemap_to_pixels(y))
+    index = cameras.length / 2 - 1
+    if (index == 0) {
+        descriptions[0] = description
+    } else {
+        descriptions.push(description)
+    }
 }
 function Dr_Tangle_backwards () {
     Dr_Tangle.setImage(img`
@@ -1431,8 +1437,29 @@ function Dr_Tangle_backwards () {
         `)
 }
 function Create_main_cameras () {
-    Camera_adder(Camera_main_coords, 63, 21)
-    Camera_adder(Camera_main_coords, 69, 37)
+    Camera_adder(Camera_main_coords, 104, 29, "Play room int", Camera_main_descriptions)
+    Camera_adder(Camera_main_coords, 87, 24, "Play room door", Camera_main_descriptions)
+    Camera_adder(Camera_main_coords, 69, 35, "Dining room NW", Camera_main_descriptions)
+    Camera_adder(Camera_main_coords, 92, 54, "Dining room SE", Camera_main_descriptions)
+    Camera_adder(Camera_main_coords, 111, 42, "E Utility door", Camera_main_descriptions)
+    Camera_adder(Camera_main_coords, 111, 37, "E Utility int", Camera_main_descriptions)
+    Camera_adder(Camera_main_coords, 54, 35, "N Hall int", Camera_main_descriptions)
+    Camera_adder(Camera_main_coords, 40, 42, "N Hall door", Camera_main_descriptions)
+    Camera_adder(Camera_main_coords, 38, 30, "W Utility int", Camera_main_descriptions)
+    Camera_adder(Camera_main_coords, 63, 23, "Beach room", Camera_main_descriptions)
+    Camera_adder(Camera_main_coords, 60, 70, "S Hall", Camera_main_descriptions)
+    Camera_adder(Camera_main_coords, 81, 69, "Party room", Camera_main_descriptions)
+    Camera_adder(Camera_main_coords, 79, 4, "Mountain peak", Camera_main_descriptions)
+    Camera_adder(Camera_main_coords, 80, 17, "Mountain pass", Camera_main_descriptions)
+    Camera_adder(Camera_main_coords, 55, 58, "Kitchen", Camera_main_descriptions)
+    Camera_adder(Camera_main_coords, 23, 51, "NW Door", Camera_main_descriptions)
+    Camera_adder(Camera_main_coords, 33, 48, "N Door", Camera_main_descriptions)
+    Camera_adder(Camera_main_coords, 43, 51, "NE Door", Camera_main_descriptions)
+    Camera_adder(Camera_main_coords, 21, 61, "W Door", Camera_main_descriptions)
+    Camera_adder(Camera_main_coords, 45, 61, "E Door", Camera_main_descriptions)
+    Camera_adder(Camera_main_coords, 23, 71, "SW Door", Camera_main_descriptions)
+    Camera_adder(Camera_main_coords, 33, 73, "S Door", Camera_main_descriptions)
+    Camera_adder(Camera_main_coords, 43, 71, "SE Door", Camera_main_descriptions)
     Camera_main_number = Camera_main_coords.length / 2
 }
 function Settings () {
@@ -2062,6 +2089,7 @@ let WP_3_minimum_wait_time = 0
 let WP_2_minimum_wait_time = 0
 let WP_1_minimum_wait_time = 0
 let WP_0_minimum_wait_time = 0
+let index = 0
 let Kokos_Direction = 0
 let Dr_Tangles_Direction = 0
 let white_Foxtail: Sprite = null
@@ -2084,6 +2112,8 @@ let Camera_main_minimap: Sprite = null
 let facing = 0
 let Camera_vent_number = 0
 let Camera_main_number = 0
+let Camera_vent_descriptions: string[] = []
+let Camera_main_descriptions: string[] = []
 let Camera_main_coords: number[] = []
 let Camera_vent_coords: number[] = []
 let Active_vent_camera = 0
@@ -2360,6 +2390,8 @@ Active_main_camera = 0
 Active_vent_camera = 0
 Camera_vent_coords = []
 Camera_main_coords = []
+Camera_main_descriptions = ["Dummy"]
+Camera_vent_descriptions = ["Dummy"]
 Camera_main_number = 0
 Camera_vent_number = 0
 facing = 0
