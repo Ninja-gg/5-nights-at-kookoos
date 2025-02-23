@@ -1844,15 +1844,11 @@ function Update_animatronic (guy: Sprite, path: Sprite[]) {
     }
 }
 function start_night_in_daycare () {
-    Game_On_pizza_boy = 1
+    Game_On_pizza_boy = 2
+    Night_started_okay = 1
     tiles.setCurrentTilemap(tilemap`level5`)
     Security_Gaurd.setPosition(tilemap_to_pixels(69), tilemap_to_pixels(97))
-    Make_kokos_path()
-    Make_DrTangles_Path()
-    Make_withered_Bongongs_path()
-    make_Maquads_path()
-    Make_Klevins_path()
-    Make_White_Foxtails_path()
+    seletor.setPosition(-1000, 0)
     initialize_sprite_positions_in_daycare()
 }
 function Make_kokos_path () {
@@ -2139,8 +2135,9 @@ let night_3: Sprite = null
 let night_2: Sprite = null
 let night_1: Sprite = null
 let seletor: Sprite = null
-let night = 0
 let Night_started_okay = 0
+let night = 0
+Night_started_okay = 0
 seletor = sprites.create(img`
     .........f22f.........
     .........f22f.........
@@ -2537,27 +2534,35 @@ DoorSW = sprites.create(img`
     ...............................................................f
     `, SpriteKind.Player)
 DoorSW.setPosition(-500, -500)
+Make_kokos_path()
+Make_DrTangles_Path()
+Make_withered_Bongongs_path()
+make_Maquads_path()
+Make_Klevins_path()
+Make_White_Foxtails_path()
 game.onUpdate(function () {
     if (seletor.overlapsWith(night_1)) {
         night = 1
-        Start_Night_in_parking_lot()
+        start_night_in_daycare()
+        scene.cameraFollowSprite(Maquad)
     } else if (seletor.overlapsWith(night_2)) {
         night = 2
-        Start_Night_in_parking_lot()
+        start_night_in_daycare()
+        scene.cameraFollowSprite(Withered_Bongong)
     } else if (seletor.overlapsWith(night_3)) {
         night = 3
-        Start_Night_in_parking_lot()
+        scene.cameraFollowSprite(Dr_Tangle)
+        start_night_in_daycare()
     } else if (seletor.overlapsWith(night_4)) {
         night = 4
-        Start_Night_in_parking_lot()
+        scene.cameraFollowSprite(Koko)
+        start_night_in_daycare()
     } else if (seletor.overlapsWith(night_5)) {
         night = 5
-        Start_Night_in_parking_lot()
-        open_walls_for_night()
+        start_night_in_daycare()
     } else if (seletor.overlapsWith(Custom_night)) {
         night = -1
-        Start_Night_in_parking_lot()
-        open_walls_for_night()
+        start_night_in_daycare()
         Activate_cameras()
     }
 })
