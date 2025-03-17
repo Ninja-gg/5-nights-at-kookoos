@@ -3,6 +3,7 @@ namespace SpriteKind {
     export const Waypoint = SpriteKind.create()
     export const chair = SpriteKind.create()
     export const Overlay = SpriteKind.create()
+    export const Text = SpriteKind.create()
 }
 function Animatronic_initialise (guy: Sprite, index: number, AI: number, speed: number) {
     sprites.setDataNumber(guy, "Index", index)
@@ -27,7 +28,7 @@ function Move_on_to_next_waypoint (guy: Sprite, path: any[], target_index: numbe
     }
     sprites.setDataNumber(guy, "WPAT", 0)
     sprites.setDataNumber(guy, "Target", target_index)
-    guy.follow(path[target_index])
+    guy.follow(path[target_index], sprites.readDataNumber(guy, "Speed"))
 }
 function Animatronics_path_create () {
     Maquads_path = [dummy_waypoint]
@@ -491,6 +492,9 @@ function initialize_sprite_parking_positions () {
     Custom_night.setPosition(-1100, 0)
     seletor.setPosition(-100, 0)
 }
+function Scene_0 () {
+	
+}
 function open_walls_for_night () {
     tiles.setTileAt(tiles.getTileLocation(68, 58), assets.tile`myTile21`)
     tiles.setTileAt(tiles.getTileLocation(69, 58), assets.tile`myTile21`)
@@ -523,6 +527,9 @@ function Make_White_Foxtails_path () {
     Path_adder(White_Foxtails_Path, 123, 87, "dark grey", 1)
     Path_adder(White_Foxtails_Path, 106, 87, "white", 3)
     Path_adder(White_Foxtails_Path, 37, 61, "grey", 0)
+}
+function Scene_0_Init () {
+	
 }
 function Animatronics_create () {
     Maquad = sprites.create(img`
@@ -1543,13 +1550,20 @@ function Make_withered_Bongongs_path () {
     Path_adder(Withered_Bongongs_path, 41, 43, "grey", 1)
     Path_adder(Withered_Bongongs_path, 41, 44, "grey", 0)
 }
+function Scene_Selector () {
+	
+}
 function initialize_sprite_positions_in_daycare () {
-    Koko.setPosition(680, 200)
-    Klevin.setPosition(650, 119)
-    Dr_Tangle.setPosition(450, 430)
-    Withered_Bongong.setPosition(1000, 550)
-    white_Foxtail.setPosition(975, 475)
+    let x_left: Sprite = null
+    let x_right: Sprite = null
+    let y_bottom: Sprite = null
+    let y_top: Sprite = null
     Maquad.setPosition(Maquads_path[1].x, Maquads_path[1].y)
+    Koko.setPosition(Kokos_path[1].x, Kokos_path[1].y)
+    Klevin.setPosition(Klevins_path[1].x, Klevins_path[1].y)
+    Dr_Tangle.setPosition(Dr_Tangles_path[1].x, Dr_Tangles_path[1].y)
+    Withered_Bongong.setPosition(Withered_Bongongs_path[1].x, Withered_Bongongs_path[1].y)
+    white_Foxtail.setPosition(White_Foxtails_Path[1].x, White_Foxtails_Path[1].y)
     treestructure.setPosition(940, 500)
     Tangels_Lab.setPosition(385, 360)
     cleaning_tools.setPosition(940, 650)
@@ -1852,7 +1866,7 @@ function start_night_in_daycare () {
     initialize_sprite_positions_in_daycare()
 }
 function Make_kokos_path () {
-    Path_adder(Kokos_path, 72, 2, "white", 1)
+    Path_adder(Kokos_path, 79, 2, "white", 1)
     Path_adder(Kokos_path, 80, 16, "white", 1)
     Path_adder(Kokos_path, 80, 34, "red", 0)
     Path_adder(Kokos_path, 93, 34, "red", 0)
@@ -2124,10 +2138,6 @@ let Dr_Tangle: Sprite = null
 let Withered_Bongong: Sprite = null
 let Maquad: Sprite = null
 let dummy_waypoint: Sprite = null
-let x_right: Sprite = null
-let x_left: Sprite = null
-let y_bottom: Sprite = null
-let y_top: Sprite = null
 let Custom_night: Sprite = null
 let night_5: Sprite = null
 let night_4: Sprite = null
@@ -2280,82 +2290,6 @@ Custom_night = sprites.create(img`
     f f f f f f f f f f f f f f f f 
     `, SpriteKind.Player)
 Custom_night.setPosition(130, 10)
-y_top = sprites.create(img`
-    5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 
-    5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 
-    5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 
-    5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 
-    5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 
-    5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 
-    5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 
-    5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 
-    5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 
-    5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 
-    5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 
-    5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 
-    5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 
-    5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 
-    5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 
-    5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 
-    `, SpriteKind.Player)
-y_top.setPosition(-600, 0)
-y_bottom = sprites.create(img`
-    2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
-    2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
-    2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
-    2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
-    2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
-    2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
-    2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
-    2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
-    2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
-    2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
-    2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
-    2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
-    2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
-    2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
-    2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
-    2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
-    `, SpriteKind.Player)
-y_bottom.setPosition(-600, 0)
-x_left = sprites.create(img`
-    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-    7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-    `, SpriteKind.Player)
-x_left.setPosition(-600, 0)
-x_right = sprites.create(img`
-    a a a a a a a a a a a a a a a a 
-    a a a a a a a a a a a a a a a a 
-    a a a a a a a a a a a a a a a a 
-    a a a a a a a a a a a a a a a a 
-    a a a a a a a a a a a a a a a a 
-    a a a a a a a a a a a a a a a a 
-    a a a a a a a a a a a a a a a a 
-    a a a a a a a a a a a a a a a a 
-    a a a a a a a a a a a a a a a a 
-    a a a a a a a a a a a a a a a a 
-    a a a a a a a a a a a a a a a a 
-    a a a a a a a a a a a a a a a a 
-    a a a a a a a a a a a a a a a a 
-    a a a a a a a a a a a a a a a a 
-    a a a a a a a a a a a a a a a a 
-    a a a a a a a a a a a a a a a a 
-    `, SpriteKind.Player)
-x_right.setPosition(-600, 0)
 dummy_waypoint = sprites.create(img`
     5 
     `, SpriteKind.Waypoint)
