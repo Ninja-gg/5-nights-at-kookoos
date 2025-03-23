@@ -14,11 +14,6 @@ function Animatronic_initialise (guy: Sprite, index: number, AI: number, speed: 
     sprites.setDataNumber(guy, "Direction", 0)
     sprites.setDataBoolean(guy, "In Vent", false)
 }
-scene.onOverlapTile(SpriteKind.securitygaurd, assets.tile`myTile4`, function (sprite, location) {
-    if (Scene == 0) {
-        start_night_in_daycare()
-    }
-})
 function Move_on_to_next_waypoint (guy: Sprite, path: any[], target_index: number) {
     // MOVE ON TO THE NEXT WAYPOINT
     target_index = sprites.readDataNumber(guy, "Target") + 1
@@ -44,7 +39,7 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     } else if (screen2 == 3) {
         if (Change_camera()) {
             screen2 = 2
-            View_camera(Camera_main_coords, Active_main_camera)
+            View_camera(Camera_main_coords, Active_main_camera, Camera_Main_Locator_Adjust)
         }
     } else if (screen2 == 1) {
         Security_Gaurd.setImage(img`
@@ -492,6 +487,9 @@ function initialize_sprite_parking_positions () {
     Custom_night.setPosition(-1100, 0)
     seletor.setPosition(-100, 0)
 }
+function TilemapX_to_MinimapX (TilemapX: number) {
+    return (TilemapX - 33) / 1.8703703703703705 + 11
+}
 function Do_Scene_1 () {
     // OPENING CUTSCENE
     if (phone_caals == 1 && Security_Gaurd.overlapsWith(security_camera_desk_thigny)) {
@@ -636,20 +634,20 @@ function Do_Scene_1 () {
     }
 }
 function open_walls_for_night () {
-    tiles.setTileAt(tiles.getTileLocation(68, 58), assets.tile`myTile21`)
-    tiles.setTileAt(tiles.getTileLocation(69, 58), assets.tile`myTile21`)
-    tiles.setTileAt(tiles.getTileLocation(70, 58), assets.tile`myTile21`)
-    tiles.setTileAt(tiles.getTileLocation(71, 58), assets.tile`myTile21`)
+    tiles.setTileAt(tiles.getTileLocation(68, 58), myTiles.tile23)
+    tiles.setTileAt(tiles.getTileLocation(69, 58), myTiles.tile23)
+    tiles.setTileAt(tiles.getTileLocation(70, 58), myTiles.tile23)
+    tiles.setTileAt(tiles.getTileLocation(71, 58), myTiles.tile23)
     tiles.setWallAt(tiles.getTileLocation(68, 58), false)
     tiles.setWallAt(tiles.getTileLocation(69, 58), false)
     tiles.setWallAt(tiles.getTileLocation(70, 58), false)
     tiles.setWallAt(tiles.getTileLocation(71, 58), false)
-    tiles.setTileAt(tiles.getTileLocation(38, 46), assets.tile`myTile21`)
-    tiles.setTileAt(tiles.getTileLocation(39, 46), assets.tile`myTile21`)
-    tiles.setTileAt(tiles.getTileLocation(40, 46), assets.tile`myTile21`)
-    tiles.setTileAt(tiles.getTileLocation(41, 46), assets.tile`myTile21`)
-    tiles.setTileAt(tiles.getTileLocation(42, 46), assets.tile`myTile21`)
-    tiles.setTileAt(tiles.getTileLocation(43, 46), assets.tile`myTile21`)
+    tiles.setTileAt(tiles.getTileLocation(38, 46), myTiles.tile23)
+    tiles.setTileAt(tiles.getTileLocation(39, 46), myTiles.tile23)
+    tiles.setTileAt(tiles.getTileLocation(40, 46), myTiles.tile23)
+    tiles.setTileAt(tiles.getTileLocation(41, 46), myTiles.tile23)
+    tiles.setTileAt(tiles.getTileLocation(42, 46), myTiles.tile23)
+    tiles.setTileAt(tiles.getTileLocation(43, 46), myTiles.tile23)
     tiles.setWallAt(tiles.getTileLocation(38, 46), false)
     tiles.setWallAt(tiles.getTileLocation(39, 46), false)
     tiles.setWallAt(tiles.getTileLocation(40, 46), false)
@@ -667,6 +665,9 @@ function Make_White_Foxtails_path () {
     Path_adder(White_Foxtails_Path, 123, 87, "dark grey", 1)
     Path_adder(White_Foxtails_Path, 106, 87, "white", 3)
     Path_adder(White_Foxtails_Path, 37, 61, "grey", 0)
+}
+function TilemapY_to_MinimapY (TilemapY: number) {
+    return (TilemapY - 61) / 1.8867924528301887 + 35
 }
 function Animatronics_create () {
     Maquad = sprites.create(img`
@@ -1492,7 +1493,7 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
             if (Active_main_camera < 0) {
                 Active_main_camera = Camera_main_number - 1
             }
-            View_camera(Camera_main_coords, Active_main_camera)
+            View_camera(Camera_main_coords, Active_main_camera, Camera_Main_Locator_Adjust)
         }
     } else if (screen2 == 3) {
         if (Change_camera()) {
@@ -1500,7 +1501,7 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
             if (Active_vent_camera < 0) {
                 Active_vent_camera = Camera_vent_number - 1
             }
-            View_camera(Camera_vent_coords, Active_vent_camera)
+            View_camera(Camera_vent_coords, Active_vent_camera, Camera_Vent_Locator_Adjust)
         }
     } else if (screen2 == 1) {
         Security_Gaurd.setImage(img`
@@ -1545,18 +1546,24 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     }
 })
 function Create_vent_cameras () {
-    Camera_adder(Camera_vent_coords, 147, 9, "Vent A, cam 1", Camera_vent_descriptions)
-    Camera_adder(Camera_vent_coords, 127, 20, "Vent A, cam 2", Camera_vent_descriptions)
-    Camera_adder(Camera_vent_coords, 138, 34, "Vent B, cam 1", Camera_vent_descriptions)
-    Camera_adder(Camera_vent_coords, 131, 41, "Vent B, cam 2", Camera_vent_descriptions)
-    Camera_adder(Camera_vent_coords, 139, 59, "Vent C, cam 1", Camera_vent_descriptions)
-    Camera_adder(Camera_vent_coords, 139, 78, "Vent C, cam 2", Camera_vent_descriptions)
-    Camera_adder(Camera_vent_coords, 116, 87, "Vent C, cam 3", Camera_vent_descriptions)
+    Camera_adder(Camera_vent_coords, 147, 9, "Vent A, cam 1", Camera_vent_descriptions, 0, 0, Camera_Vent_Locator_Adjust)
+    Camera_adder(Camera_vent_coords, 127, 20, "Vent A, cam 2", Camera_vent_descriptions, 0, 0, Camera_Vent_Locator_Adjust)
+    Camera_adder(Camera_vent_coords, 138, 34, "Vent B, cam 1", Camera_vent_descriptions, 0, 0, Camera_Vent_Locator_Adjust)
+    Camera_adder(Camera_vent_coords, 131, 41, "Vent B, cam 2", Camera_vent_descriptions, 0, 0, Camera_Vent_Locator_Adjust)
+    Camera_adder(Camera_vent_coords, 139, 59, "Vent C, cam 1", Camera_vent_descriptions, 0, 0, Camera_Vent_Locator_Adjust)
+    Camera_adder(Camera_vent_coords, 139, 78, "Vent C, cam 2", Camera_vent_descriptions, 0, 0, Camera_Vent_Locator_Adjust)
+    Camera_adder(Camera_vent_coords, 116, 87, "Vent C, cam 3", Camera_vent_descriptions, 0, 0, Camera_Vent_Locator_Adjust)
     Camera_vent_number = Camera_vent_coords.length / 2
 }
-function Camera_adder (cameras: number[], x: number, y: number, description: string, descriptions: string[]) {
-    cameras.push(tilemap_to_pixels(x))
-    cameras.push(tilemap_to_pixels(y))
+// num = locAdjX
+// num2 = locAdjY
+// array = locAdjArray
+// 
+function Camera_adder (cameras: number[], x: number, y: number, description: string, descriptions: string[], num: number, num2: number, array: number[]) {
+    cameras.push(x)
+    cameras.push(y)
+    array.push(num)
+    array.push(num2)
     index = cameras.length / 2 - 1
     if (index == 0) {
         descriptions[0] = description
@@ -1595,29 +1602,29 @@ function Dr_Tangle_backwards () {
         `)
 }
 function Create_main_cameras () {
-    Camera_adder(Camera_main_coords, 104, 29, "Play room int", Camera_main_descriptions)
-    Camera_adder(Camera_main_coords, 87, 24, "Play room door", Camera_main_descriptions)
-    Camera_adder(Camera_main_coords, 69, 35, "Dining room NW", Camera_main_descriptions)
-    Camera_adder(Camera_main_coords, 92, 54, "Dining room SE", Camera_main_descriptions)
-    Camera_adder(Camera_main_coords, 111, 42, "E Utility door", Camera_main_descriptions)
-    Camera_adder(Camera_main_coords, 111, 37, "E Utility int", Camera_main_descriptions)
-    Camera_adder(Camera_main_coords, 54, 35, "N Hall int", Camera_main_descriptions)
-    Camera_adder(Camera_main_coords, 40, 42, "N Hall door", Camera_main_descriptions)
-    Camera_adder(Camera_main_coords, 38, 30, "W Utility int", Camera_main_descriptions)
-    Camera_adder(Camera_main_coords, 63, 23, "Beach room", Camera_main_descriptions)
-    Camera_adder(Camera_main_coords, 60, 70, "S Hall", Camera_main_descriptions)
-    Camera_adder(Camera_main_coords, 81, 69, "Party room", Camera_main_descriptions)
-    Camera_adder(Camera_main_coords, 79, 4, "Mountain peak", Camera_main_descriptions)
-    Camera_adder(Camera_main_coords, 80, 17, "Mountain pass", Camera_main_descriptions)
-    Camera_adder(Camera_main_coords, 55, 58, "Kitchen", Camera_main_descriptions)
-    Camera_adder(Camera_main_coords, 23, 51, "NW Door", Camera_main_descriptions)
-    Camera_adder(Camera_main_coords, 33, 48, "N Door", Camera_main_descriptions)
-    Camera_adder(Camera_main_coords, 43, 51, "NE Door", Camera_main_descriptions)
-    Camera_adder(Camera_main_coords, 21, 61, "W Door", Camera_main_descriptions)
-    Camera_adder(Camera_main_coords, 45, 61, "E Door", Camera_main_descriptions)
-    Camera_adder(Camera_main_coords, 23, 71, "SW Door", Camera_main_descriptions)
-    Camera_adder(Camera_main_coords, 33, 73, "S Door", Camera_main_descriptions)
-    Camera_adder(Camera_main_coords, 43, 71, "SE Door", Camera_main_descriptions)
+    Camera_adder(Camera_main_coords, 104, 29, "Play room int", Camera_main_descriptions, 0, 0, Camera_Main_Locator_Adjust)
+    Camera_adder(Camera_main_coords, 87, 24, "Play room door", Camera_main_descriptions, 0, 0, Camera_Main_Locator_Adjust)
+    Camera_adder(Camera_main_coords, 69, 35, "Dining room NW", Camera_main_descriptions, 0, 0, Camera_Main_Locator_Adjust)
+    Camera_adder(Camera_main_coords, 92, 54, "Dining room SE", Camera_main_descriptions, 0, 0, Camera_Main_Locator_Adjust)
+    Camera_adder(Camera_main_coords, 111, 42, "E Utility door", Camera_main_descriptions, 0, 0, Camera_Main_Locator_Adjust)
+    Camera_adder(Camera_main_coords, 111, 37, "E Utility int", Camera_main_descriptions, 0, 0, Camera_Main_Locator_Adjust)
+    Camera_adder(Camera_main_coords, 54, 35, "N Hall int", Camera_main_descriptions, 0, 0, Camera_Main_Locator_Adjust)
+    Camera_adder(Camera_main_coords, 40, 42, "N Hall door", Camera_main_descriptions, 0, 0, Camera_Main_Locator_Adjust)
+    Camera_adder(Camera_main_coords, 38, 30, "W Utility int", Camera_main_descriptions, 0, -1, Camera_Main_Locator_Adjust)
+    Camera_adder(Camera_main_coords, 63, 23, "Beach room", Camera_main_descriptions, 0, 0, Camera_Main_Locator_Adjust)
+    Camera_adder(Camera_main_coords, 60, 70, "S Hall", Camera_main_descriptions, 0, 0, Camera_Main_Locator_Adjust)
+    Camera_adder(Camera_main_coords, 81, 69, "Party room", Camera_main_descriptions, 0, 0, Camera_Main_Locator_Adjust)
+    Camera_adder(Camera_main_coords, 79, 4, "Mountain peak", Camera_main_descriptions, 0, 0, Camera_Main_Locator_Adjust)
+    Camera_adder(Camera_main_coords, 80, 17, "Mountain pass", Camera_main_descriptions, 0, 0, Camera_Main_Locator_Adjust)
+    Camera_adder(Camera_main_coords, 55, 58, "Kitchen", Camera_main_descriptions, 0, 0, Camera_Main_Locator_Adjust)
+    Camera_adder(Camera_main_coords, 23, 51, "NW Door", Camera_main_descriptions, 0, 0, Camera_Main_Locator_Adjust)
+    Camera_adder(Camera_main_coords, 33, 48, "N Door", Camera_main_descriptions, 0, 0, Camera_Main_Locator_Adjust)
+    Camera_adder(Camera_main_coords, 43, 51, "NE Door", Camera_main_descriptions, 0, 0, Camera_Main_Locator_Adjust)
+    Camera_adder(Camera_main_coords, 21, 61, "W Door", Camera_main_descriptions, 0, 0, Camera_Main_Locator_Adjust)
+    Camera_adder(Camera_main_coords, 45, 61, "E Door", Camera_main_descriptions, 0, 0, Camera_Main_Locator_Adjust)
+    Camera_adder(Camera_main_coords, 23, 71, "SW Door", Camera_main_descriptions, 0, 0, Camera_Main_Locator_Adjust)
+    Camera_adder(Camera_main_coords, 33, 73, "S Door", Camera_main_descriptions, 0, 0, Camera_Main_Locator_Adjust)
+    Camera_adder(Camera_main_coords, 43, 71, "SE Door", Camera_main_descriptions, 0, 0, Camera_Main_Locator_Adjust)
     Camera_main_number = Camera_main_coords.length / 2
 }
 function Settings () {
@@ -1701,6 +1708,7 @@ function Make_withered_Bongongs_path () {
     Path_adder(Withered_Bongongs_path, 86, 34, "red", 0)
     Path_adder(Withered_Bongongs_path, 69, 35, "red", 1)
     Path_adder(Withered_Bongongs_path, 45, 35, "grey", 1)
+    Path_adder(Withered_Bongongs_path, 41, 35, "grey", 0)
     Path_adder(Withered_Bongongs_path, 41, 43, "grey", 1)
     Path_adder(Withered_Bongongs_path, 41, 44, "grey", 0)
 }
@@ -1715,7 +1723,7 @@ function initialize_sprite_positions_in_daycare () {
     Tangels_Lab.setPosition(385, 360)
     cleaning_tools.setPosition(940, 650)
     Kokos_mountain.setPosition(712, 120)
-    for (let value of tiles.getTilesByType(assets.tile`myTile29`)) {
+    for (let value of tiles.getTilesByType(myTiles.tile31)) {
         Chairs = sprites.create(img`
             .............................................
             .............................................
@@ -1764,7 +1772,7 @@ function initialize_sprite_positions_in_daycare () {
             .......ffff.....ffff.....ffff.....ffff.......
             `, SpriteKind.chair)
         tiles.placeOnTile(Chairs, value)
-        tiles.setTileAt(value, assets.tile`transparency16`)
+        tiles.setTileAt(value, myTiles.transparency16)
     }
     dummy_waypoint.setPosition(tilemap_to_pixels(-10), tilemap_to_pixels(-10))
     security_camera_desk_thigny.setPosition(tilemap_to_pixels(33), tilemap_to_pixels(59))
@@ -1792,7 +1800,7 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
             if (Active_main_camera >= Camera_main_number) {
                 Active_main_camera = 0
             }
-            View_camera(Camera_main_coords, Active_main_camera)
+            View_camera(Camera_main_coords, Active_main_camera, Camera_Main_Locator_Adjust)
         }
     } else if (screen2 == 3) {
         if (Change_camera()) {
@@ -1800,7 +1808,7 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
             if (Active_vent_camera >= Camera_vent_number) {
                 Active_vent_camera = 0
             }
-            View_camera(Camera_vent_coords, Active_vent_camera)
+            View_camera(Camera_vent_coords, Active_vent_camera, Camera_Vent_Locator_Adjust)
         }
     } else if (screen2 == 1) {
         Security_Gaurd.setImage(img`
@@ -2065,11 +2073,16 @@ function Make_kokos_path () {
     Path_adder(Kokos_path, 67, 69, "grey", 0)
     Path_adder(Kokos_path, 50, 69, "grey", 0)
 }
+scene.onOverlapTile(SpriteKind.securitygaurd, myTiles.tile6, function (sprite, location) {
+    if (Scene == 0) {
+        start_night_in_daycare()
+    }
+})
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     if (screen2 == 2) {
         if (Change_camera()) {
             screen2 = 3
-            View_camera(Camera_vent_coords, Active_vent_camera)
+            View_camera(Camera_vent_coords, Active_vent_camera, Camera_Vent_Locator_Adjust)
         }
     } else if (screen2 == 3) {
     	
@@ -2120,17 +2133,24 @@ function pixels_to_tilemap (pixel: number) {
 function tilemap_to_pixels (tileI: number) {
     return tileI * 16 + 8
 }
-function View_camera (cameras: number[], index: number) {
+// array = locAdjs
+function View_camera (cameras: number[], index: number, array: number[]) {
     double = index * 2
     if (double >= cameras.length || double < 0) {
         console.logValue("Out of range, camera index", index)
     }
-    camX = cameras[double]
-    camY = cameras[double + 1]
-    Camera_main_minimap.setPosition(camX + 50, camY - 30)
-    TestCursor.setPosition(camX + 72, camY - 8)
+    tmX = cameras[double]
+    tmY = cameras[double + 1]
+    locAdjX = array[double]
+    locAdjY = array[double + 1]
+    pxX = tilemap_to_pixels(tmX)
+    pxY = tilemap_to_pixels(tmY)
+    Camera_main_minimap.setPosition(pxX + 50, pxY - 30)
+    locatorX = pxX + TilemapX_to_MinimapX(tmX) + 20 + locAdjX
+    locatorY = pxY + TilemapY_to_MinimapY(tmY) - 59 + locAdjY
+    MapLocator.setPosition(locatorX, locatorY)
     camera_change_time = game.runtime()
-    scene.centerCameraAt(camX, camY)
+    scene.centerCameraAt(pxX, pxY)
 }
 function get_vent_direction (guy: Sprite) {
     vx = guy.vx
@@ -2265,8 +2285,14 @@ function Teleport_to_waypoint (guy: Sprite, path: Sprite[], toIndex: number) {
 let new_waypoint: Sprite = null
 let vy = 0
 let vx = 0
-let camY = 0
-let camX = 0
+let locatorY = 0
+let locatorX = 0
+let pxY = 0
+let pxX = 0
+let locAdjY = 0
+let locAdjX = 0
+let tmY = 0
+let tmX = 0
 let double = 0
 let waitTime = 0
 let wpat = 0
@@ -2301,13 +2327,15 @@ let Maquads_path: Sprite[] = []
 let target_index = 0
 let Scene = 0
 let DoorSW: Sprite = null
-let TestCursor: Sprite = null
+let MapLocator: Sprite = null
 let Camera_main_minimap: Sprite = null
 let facing = 0
 let Camera_vent_number = 0
 let Camera_main_number = 0
 let Camera_vent_descriptions: string[] = []
 let Camera_main_descriptions: string[] = []
+let Camera_Vent_Locator_Adjust: number[] = []
+let Camera_Main_Locator_Adjust: number[] = []
 let Camera_main_coords: number[] = []
 let Camera_vent_coords: number[] = []
 let Active_vent_camera = 0
@@ -2496,14 +2524,14 @@ WP_1_Go_or_NoGo_TRUE_is_move_on = true
 // 1=Security guard
 // 2=Main cameras
 // 3=Vent cameras
-// 
-// 
 screen2 = 0
 camera_change_time = 0
 Active_main_camera = 0
 Active_vent_camera = 0
 Camera_vent_coords = []
 Camera_main_coords = []
+Camera_Main_Locator_Adjust = []
+Camera_Vent_Locator_Adjust = []
 Camera_main_descriptions = ["Dummy"]
 Camera_vent_descriptions = ["Dummy"]
 Camera_main_number = 0
@@ -2574,7 +2602,7 @@ Camera_main_minimap = sprites.create(img`
     ............................................................
     `, SpriteKind.Overlay)
 Camera_main_minimap.setPosition(-1000, -500)
-TestCursor = sprites.create(img`
+MapLocator = sprites.create(img`
     . . 2 2 2 . . 
     . . . 2 . . . 
     2 . . . . . 2 
@@ -2583,7 +2611,7 @@ TestCursor = sprites.create(img`
     . . . 2 . . . 
     . . 2 2 2 . . 
     `, SpriteKind.Overlay)
-TestCursor.setPosition(-1000, -500)
+MapLocator.setPosition(-1000, -500)
 DoorSW = sprites.create(img`
     f11111111f......................................................
     .f11111111f.....................................................
