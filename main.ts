@@ -1555,15 +1555,11 @@ function Create_vent_cameras () {
     Camera_adder(Camera_vent_coords, 116, 87, "Vent C, cam 3", Camera_vent_descriptions, 0, 0, Camera_Vent_Locator_Adjust)
     Camera_vent_number = Camera_vent_coords.length / 2
 }
-// num = locAdjX
-// num2 = locAdjY
-// array = locAdjArray
-// 
-function Camera_adder (cameras: number[], x: number, y: number, description: string, descriptions: string[], num: number, num2: number, array: number[]) {
+function Camera_adder (cameras: number[], x: number, y: number, description: string, descriptions: string[], locAdjX: number, locAdjY: number, locAdjArray: number[]) {
     cameras.push(x)
     cameras.push(y)
-    array.push(num)
-    array.push(num2)
+    locAdjArray.push(locAdjX)
+    locAdjArray.push(locAdjY)
     index = cameras.length / 2 - 1
     if (index == 0) {
         descriptions[0] = description
@@ -1603,7 +1599,7 @@ function Dr_Tangle_backwards () {
 }
 function Create_main_cameras () {
     Camera_adder(Camera_main_coords, 104, 29, "Play room int", Camera_main_descriptions, 0, 0, Camera_Main_Locator_Adjust)
-    Camera_adder(Camera_main_coords, 87, 24, "Play room door", Camera_main_descriptions, 0, 0, Camera_Main_Locator_Adjust)
+    Camera_adder(Camera_main_coords, 87, 24, "Play room door", Camera_main_descriptions, 3, 0, Camera_Main_Locator_Adjust)
     Camera_adder(Camera_main_coords, 69, 35, "Dining room NW", Camera_main_descriptions, 0, 0, Camera_Main_Locator_Adjust)
     Camera_adder(Camera_main_coords, 92, 54, "Dining room SE", Camera_main_descriptions, 0, 0, Camera_Main_Locator_Adjust)
     Camera_adder(Camera_main_coords, 111, 42, "E Utility door", Camera_main_descriptions, 0, 0, Camera_Main_Locator_Adjust)
@@ -2603,13 +2599,12 @@ Camera_main_minimap = sprites.create(img`
     `, SpriteKind.Overlay)
 Camera_main_minimap.setPosition(-1000, -500)
 MapLocator = sprites.create(img`
-    . . 2 2 2 . . 
-    . . . 2 . . . 
-    2 . . . . . 2 
-    2 2 . 2 . 2 2 
-    2 . . . . . 2 
-    . . . 2 . . . 
-    . . 2 2 2 . . 
+    . . 2 2 . . 
+    . 2 2 2 2 . 
+    2 2 2 2 2 2 
+    2 2 2 2 2 2 
+    . 2 2 2 2 . 
+    . . 2 2 . . 
     `, SpriteKind.Overlay)
 MapLocator.setPosition(-1000, -500)
 DoorSW = sprites.create(img`
